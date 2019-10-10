@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security" xmlns:beans="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+  <!--
+    <global-method-security pre-post-annotations="enabled" />
+  
+  
+  <beans:bean id="myWebInvocationPrivilegeEvaluator" class="org.springframework.security.web.access.DefaultWebInvocationPrivilegeEvaluator">
+    <beans:constructor-arg name="securityInterceptor" ref="securityFilter" />
+  </beans:bean>
+-->
+  <!-- 静态资源不需要认证   -->
+  <http pattern="/static/**" security="none" />
+  <http pattern="/services/**" security="none" />
+  <http pattern="/rest/**" create-session="stateless" use-expressions="true" authentication-manager-ref="restAuthenticationManager">
+    <intercept-url pattern="/rest/**" access="isAuthenticated()" />
+    <http-basic />
+  </http>
+  <http auto-config="false" access-denied-page="/denied" authentication-manager-ref="authenticationManager">
+    <!-- 允许非匿名访问 -->
+
+    <!-- 用户登录认证后才能访问 
+      <intercept-url pattern="/roles/**" access="isAuthenticated()" />
+      <intercept-url pattern="/orgs/**" access="hasRole('supervisor')" />
+      <intercept-url pattern="/users/**" access="isAuthenticated()" />
+      <intercept-url pattern="/files/**" access="isAuthenticated()" />
+    -->
+    <!--
+      Allow all other requests. In a real application you should
+      adopt a whitelisting approach where access is not allowed by default
+
+      <intercept-url pattern="/**" access="permitAll" />
+    -->
+    <!--
+      default-target-url 指定了从登录页面登录后进行跳转的页面
+      always-use-default-target true表示登录成功后强制跳转
+      authentication-failure-url 表示验证失败后进入的页面
+      login-processing-url 设置验证登录验证地址，如果不设置，默认是j_spring_security_check
+      username-parameter,password-parameter 设置登录用户名和密码的请求name，默认：j_username,j_password
+      default-target-url="/user/home"
+      authentication-failure-handler-ref="failureHandler"
+    -->
+    <form-login login-page="/login" authentication-failure-url="/login/error" authentication-success-handler-ref="loginSuccessHandler" />
+    <http-basic />
+    <logout invalidate-session="true" delete-cookies="JSESSIONID" success-handler-ref="logoutSuccessHandler" logout-url="/logout" />
+    <!--
+      <remember-me/>
+      Uncomment to enable X509 client authentication support
+      <x509 />
+    -->
+    <!-- Uncomment to limit the number of sessions a user can have -->
+    <session-management invalid-session-url="/login" >
+      <concurrency-control expired-url="/login" max-sessions="10" error-if-maximum-exceeded="false" />
+    </session-management>
+
+    <custom-filter before="FILTER_SECURITY_INTERCEPTOR" ref="securityFilter" />
+
+   <!--  <custom-filter after="FILTER_SECURITY_INTERCEPTOR" ref="switchUserFilter" /> -->
+    
+  </http>
+    
+    <!--
+    Usernames/Passwords are
+        rod/koala
+        dianne/emu
+        scott/wombat
+        peter/opal
+    -->
+
+  <authentication-manager id="authenticationManager">
+    <authentication-provider user-service-ref="userServiceImpl">
+      <password-encoder ref="passwordEncoder">
+        <salt-source user-property="username" />
+      </password-encoder>
+    </authentication-provider>
+  </authentication-manager>
+  
+  <authentication-manager id="restAuthenticationManager">
+    <authentication-provider>
+        <password-encoder hash="md5"/>
+        <user-service>
+        
+            <user name="peter" password="e10adc3949ba59abbe56e057f20f883e" authorities="user" />
+         <!--    
+            <user name="rod" password="4efe081594ce25ee4efd9f7067f7f678a347bccf2de201f3adf2a3eb544850b465b4e51cdc3fcdde" authorities="supervisor, user, teller" />
+            <user name="dianne" password="957ea522524a41cbfb649a3e293d56268f840fd5b661b499b07858bc020d6d223f912e3ab303b00f" authorities="user,teller" />
+            <user name="scott" password="fb1f9e48058d30dc21c35ab4cf895e2a80f2f03fac549b51be637196dfb6b2b7276a89c65e38b7a1" authorities="user" />
+            <user name="peter" password="e175750688deee19d7179d444bfaf92129f4eea8b4503d83eb8f92a7dd9cda5fbae73638c913e420" authorities="user" />
+         -->
+        </user-service>
+    </authentication-provider>
+  </authentication-manager>
+
+  <beans:bean id="encoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder"/>
+  
+  <beans:bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.MessageDigestPasswordEncoder">
+    <beans:constructor-arg value="MD5"></beans:constructor-arg>
+  </beans:bean>
+  
+  <beans:bean id="loginSuccessHandler" class="com.aoto.framework.security.web.authentication.LoginSuccessHandler">
+    <beans:property name="alwaysUseDefaultTargetUrl" value="true" />
+    <beans:property name="defaultTargetUrl" value="/index" />
+  </beans:bean>
+  
+  <beans:bean id="logoutSuccessHandler" class="com.aoto.framework.security.web.authentication.LogoutSuccessHandler">
+    <beans:property name="alwaysUseDefaultTargetUrl" value="true" />
+    <beans:property name="defaultTargetUrl" value="/login" />
+  </beans:bean> 
+
+  <!-- 访问控制验证器Authority -->
+  <beans:bean id="securityFilter" class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">
+    <beans:property name="authenticationManager" ref="authenticationManager" />
+    <beans:property name="accessDecisionManager" ref="affirmativeBasedAccessDecisionManager" />
+    <beans:property name="securityMetadataSource" ref="securityMetadataSource" />
+    <beans:property name="observeOncePerRequest" value="false" />
+  </beans:bean>
+
+  <beans:bean id="securityMetadataSource" class="com.aoto.framework.security.web.access.intercept.FilterInvocationSecurityMetadataSourceImpl">
+    <beans:constructor-arg name="loginPattern" value="^/login.*,GET" />
+    <beans:constructor-arg name="heartbeatPattern" value="^/system/logs/heartbeat.*,PUT" />
+    <beans:constructor-arg name="permitAllPattern">
+       <beans:array>
+         <beans:value>^/index$,GET</beans:value>
+         <beans:value>^/system/users/-?\d+/password.*,PUT</beans:value>
+         <beans:value>^/system/commuser/.+,GET</beans:value>
+         <beans:value>^/system/commuser/.+,POST</beans:value>
+         <beans:value>^/system/my/menus.*,GET</beans:value>
+         <beans:value>^/system/logs/behavior$,POST</beans:value>
+       </beans:array>
+    </beans:constructor-arg>
+  </beans:bean>
+
+  <beans:bean id="affirmativeBasedAccessDecisionManager" class="org.springframework.security.access.vote.AffirmativeBased">
+    <beans:property name="decisionVoters" ref="roleDecisionVoter" />
+  </beans:bean>
+
+  <beans:bean id="roleDecisionVoter" class="com.aoto.framework.security.web.access.vote.RoleVoterImpl">
+    <beans:property name="rolePrefix" value="" />
+  </beans:bean>
+
+<!--   
+  <beans:bean id="switchUserFilter" class="org.springframework.security.web.authentication.switchuser.SwitchUserFilter">  
+    <beans:property name="userDetailsService" ref="userServiceImpl"/>  
+    <beans:property name="usernameParameter" value="username"/>  
+    <beans:property name="switchUserUrl" value="/switch"/>  
+    <beans:property name="exitUserUrl" value="/logout"/>  
+    <beans:property name="successHandler" ref="loginSuccessHandler"/>  
+  </beans:bean>  
+  -->
+  
+</beans:beans>

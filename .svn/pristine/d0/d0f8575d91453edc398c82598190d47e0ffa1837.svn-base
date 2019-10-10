@@ -1,0 +1,7 @@
+user.defaultPassword=abcd1234
+web.staticPath=
+heartbeat.interval=60
+file.root=d:\\avs
+log.behavior.enabled=true
+#dbType,1:oracle;2:mysql
+db.type=2

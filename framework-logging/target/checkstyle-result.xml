@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="7.8.1">
+<file name="C:\Users\admin\Desktop\newaoto\framework-logging\src\main\java\com\aoto\framework\logging\models\LoginLogModel.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-logging\src\main\java\com\aoto\framework\logging\models\LoginLogQuery.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-logging\src\main\java\com\aoto\framework\logging\persistence\inf\LogMapper.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-logging\src\main\java\com\aoto\framework\logging\service\impl\LogServiceImpl.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-logging\src\main\java\com\aoto\framework\logging\service\inf\LogService.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-logging\src\main\java\com\aoto\framework\logging\web\controllers\LogController.java">
+</file>
+</checkstyle>

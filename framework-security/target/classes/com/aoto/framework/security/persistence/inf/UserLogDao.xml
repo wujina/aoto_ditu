@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.aoto.framework.security.persistence.inf.UserLogDao">
+
+  <sql id="table">user_log</sql>
+  
+  <sql id="fields">user_log_id, user_log_user, user_log_operator, user_log_ip, user_log_call_time, user_log_brower, user_log_operating, user_log_mac_address, user_log_ip_addess</sql>
+  
+  <resultMap type="com.aoto.framework.security.models.UserLog" id="baseResultMap">
+    <id property="id" column="id"></id>
+    <result property="userLogId" column="user_log_id"/>
+    <result property="userLogUser" column="user_log_user"/>
+    <result property="userLogOperator" column="user_log_operator"/>
+    <result property="userLogIp" column="user_log_ip"/>
+    <result property="userLogCallTime" column="user_log_call_time"/>
+    <result property="userLogBrower" column="user_log_brower"/>
+    <result property="userLogOperating" column="user_log_operating"/>
+    <result property="userLogMacAddress" column="user_log_mac_address"/>
+    <result property="userLogIpAddess" column="user_log_ip_addess"/>
+  </resultMap>
+  
+  <sql id="criteria">
+    <where>
+      <foreach collection="criterions" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+            <foreach collection="criteria.criteria" item="criterion">
+			  <choose>
+			    <when test="criterion.noValue">
+			      and ${criterion.condition}
+			    </when>
+			    <when test="criterion.listValue">
+			      and ${criterion.condition}
+			      <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+			        #{listItem}
+			      </foreach>
+			    </when>
+			    <when test="criterion.betweenValue">
+			      and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+			    </when>
+			    <otherwise>
+			      and ${criterion.condition} #{criterion.value}
+			    </otherwise>
+			  </choose>              
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+
+  <insert id="saveOne" keyProperty="id">
+    insert into<include refid="table" />
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <foreach collection="values" item="value">
+        ${value.mapping.column},
+      </foreach>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <foreach collection="values" item="value">
+        #{value.value},
+      </foreach>
+    </trim>
+  </insert>
+  
+  <insert id="save" keyProperty="id">
+    insert into<include refid="table" />
+    <trim prefix="(" suffix=") values" suffixOverrides=",">
+      <foreach collection="list[0].values" item="value">
+        ${value.mapping.column},
+      </foreach>
+    </trim>
+    <foreach collection="list" item="model" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+	    <foreach collection="model.values" item="value">
+	      #{value.value},
+	    </foreach>
+	  </trim>
+    </foreach>
+  </insert>
+
+  <delete id="deleteOne">
+    delete from<include refid="table" />where id = #{id}  
+  </delete>
+
+  <delete id="delete">
+    delete from<include refid="table" />
+    <if test="_parameter != null">
+      <include refid="criteria" />
+    </if>
+  </delete>
+
+  <select id="findOne" resultMap="baseResultMap">
+    select<include refid="fields" />
+    from<include refid="table" />where id = #{id}
+  </select>
+
+  <select id="find" resultMap="baseResultMap">
+    select<include refid="fields" />
+    from<include refid="table" />
+    <if test="_parameter != null">
+      <include refid="criteria" />
+    </if>
+    <if test="orderBy != null and orderBy != ''">
+      order by ${orderBy} ${sort}
+    </if>
+    <if test="slice">
+      limit #{skip}, #{size}
+    </if>
+  </select>
+  
+  <select id="findFirst" resultMap="baseResultMap">
+    select<include refid="fields" />
+    from<include refid="table" />
+    <if test="_parameter != null">
+      <include refid="criteria" />
+    </if>
+    limit 0, 1
+  </select>
+  
+  <select id="count" resultType="long">
+    select count(id)
+    from<include refid="table" />
+    <if test="_parameter != null">
+      <include refid="criteria" />
+    </if>
+  </select>
+  
+  <select id="exists" resultType="boolean">
+    select count(id)
+    from<include refid="table" />
+    <if test="_parameter != null">
+      <include refid="criteria" />
+    </if>
+  </select>
+
+  <update id="update">
+    update<include refid="table" />
+	<set>
+	  <foreach collection="values" item="value">
+	    <if test="value.value != null">
+	      ${value.mapping.column} = #{value.value},
+	    </if>
+	  </foreach>
+	</set>where id = #{id}
+  </update>
+
+  <update id="updateNullable">
+    update<include refid="table" />
+	<set>
+	  <foreach collection="values" item="value">
+	    ${value.mapping.column} = #{value.value},
+	  </foreach>
+	</set>where id = #{id}
+  </update>
+
+</mapper>

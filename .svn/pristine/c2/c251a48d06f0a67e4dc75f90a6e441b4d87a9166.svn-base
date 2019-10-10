@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aoto.framework.security.persistence.inf.MenuMapper">
+
+  <resultMap id="menuMap" type="map">
+    <id column="MENU_ID" property="menuId" javaType="int" jdbcType="NUMERIC" />
+    <result column="MENU_NAME" property="menuName" javaType="String" jdbcType="VARCHAR" />
+    <result column="MENU_URL" property="menuUrl" javaType="String" jdbcType="VARCHAR" />
+    <result column="ICON" property="icon" javaType="String" jdbcType="VARCHAR" />
+    <result column="PARENT_ID" property="parentId" javaType="int" jdbcType="NUMERIC" />
+    <result column="FUN_ID" property="funId" javaType="int" jdbcType="NUMERIC" />
+    <result column="FUN_NAME" property="funName" javaType="String" jdbcType="VARCHAR" />
+    <result column="SORT_NUM" property="sortNum" javaType="int" jdbcType="NUMERIC" />
+    <result column="LEVEL_NUM" property="levelNum" javaType="int" jdbcType="NUMERIC" />
+    <result column="DELETED" property="deleted" javaType="boolean" jdbcType="NUMERIC" />
+  </resultMap>
+  
+  <resultMap id="menuTreeMap" type="map">
+    <id column="MENU_ID" property="id" javaType="int" jdbcType="NUMERIC" />
+    <result column="MENU_NAME" property="text" javaType="String" jdbcType="VARCHAR" />
+    <result column="state" property="state" javaType="String" jdbcType="VARCHAR" />
+    <association property="attributes" javaType="map" resultMap="menuMap" />
+    <collection property="children" ofType="TreeJson" column="{parentId=MENU_ID,userId=USER_ID}" select="selectMenusByParentId" />
+  </resultMap>
+
+  <select id="selectMenusByParentId" parameterType="map" resultMap="menuTreeMap">
+    <choose>
+      <when test="userId > 0">
+        select m.MENU_ID, m.MENU_NAME, m.MENU_URL, m.ICON, m.PARENT_ID, m.FUN_ID,GET_FUN_NAME(m.FUN_ID) FUN_NAME, m.SORT_NUM, m.LEVEL_NUM, m.DELETED,
+          (select case when count(1)=0 then 'open' else 'closed' end from sys_menu where parent_id = m.menu_id and deleted = 0) as state,
+          ${userId} as USER_ID
+        from sys_menu m
+        where exists
+        (
+          SELECT FUN_ID FROM SYS_MENU where fun_id in 
+            (select f.fun_id from SYS_ROLE_USER u, SYS_ROLE_FUN f where u.ROLE_ID = f.ROLE_ID and u.USER_ID = #{userId,jdbcType=NUMERIC}) 
+            or FUN_ID &lt; 0
+          START WITH MENU_ID = m.menu_id
+          CONNECT BY PARENT_ID = PRIOR MENU_ID
+        )
+        and m.deleted = 0 AND m.PARENT_ID = #{parentId,jdbcType=NUMERIC} order by m.sort_num asc
+      </when>
+      <otherwise>
+        SELECT o.MENU_ID, o.MENU_NAME, o.MENU_URL, o.ICON, o.PARENT_ID, o.FUN_ID,GET_FUN_NAME(o.FUN_ID) FUN_NAME,  o.SORT_NUM, o.LEVEL_NUM, o.DELETED,(select case when count(1)=0 then 'open' else 'closed' end from sys_menu where parent_id = o.menu_id and deleted = 0) as state, ${userId} as USER_ID
+        FROM sys_menu o WHERE o.DELETED = 0 AND o.PARENT_ID = #{parentId,jdbcType=NUMERIC} order by o.sort_num asc
+      </otherwise>
+    </choose>
+  </select>
+  
+  <select id="selectCountByNameAndParentId" parameterType="map" resultType="int">
+    SELECT COUNT(1) FROM SYS_MENU where MENU_NAME = #{menuName,jdbcType=VARCHAR} AND PARENT_ID = #{parentId,jdbcType=NUMERIC} AND DELETED = 0
+    <if test="menuId > 0">
+      AND MENU_ID != #{menuId,jdbcType=NUMERIC}
+    </if>
+  </select>
+  <insert id="insertMenu" parameterType="map">
+    INSERT INTO SYS_MENU
+    (MENU_ID, MENU_NAME, MENU_URL, ICON, PARENT_ID, FUN_ID, SORT_NUM, LEVEL_NUM, DELETED, CREATED_BY, CREATED_DATE, LAST_UPDATED_BY, LAST_UPDATED_DATE)
+    VALUES 
+    (
+     #{menuId,jdbcType=NUMERIC},
+     #{menuName,jdbcType=VARCHAR},
+     #{menuUrl,jdbcType=VARCHAR},
+     #{icon,jdbcType=VARCHAR},
+     #{parentId,jdbcType=NUMERIC},
+     #{funId,jdbcType=NUMERIC},
+     #{sortNum,jdbcType=NUMERIC},
+     #{levelNum,jdbcType=NUMERIC},
+     #{deleted,jdbcType=NUMERIC},#{createdBy,jdbcType=NUMERIC},#{createdDate,jdbcType=TIMESTAMP},
+    #{lastUpdatedBy,jdbcType=NUMERIC}, #{lastUpdatedDate,jdbcType=TIMESTAMP})
+  </insert>
+  
+  <delete id="deleteMenu" parameterType="map">
+    DELETE FROM SYS_MENU WHERE MENU_ID IN (SELECT MENU_ID FROM SYS_MENU START WITH MENU_ID = #{menuId,jdbcType=NUMERIC} CONNECT BY PARENT_ID = PRIOR MENU_ID)
+  </delete>
+
+  <update id="updateMenu" parameterType="map">
+    UPDATE SYS_MENU SET 
+    MENU_NAME = #{menuName,jdbcType=VARCHAR},
+    MENU_URL = #{menuUrl,jdbcType=VARCHAR},
+    ICON = #{icon,jdbcType=VARCHAR},
+    FUN_ID = #{funId,jdbcType=NUMERIC},
+    SORT_NUM = #{sortNum,jdbcType=NUMERIC},LAST_UPDATED_BY = #{lastUpdatedBy,jdbcType=NUMERIC}, LAST_UPDATED_DATE = #{lastUpdatedDate,jdbcType=TIMESTAMP}
+    WHERE MENU_ID = #{menuId,jdbcType=NUMERIC}
+  </update>
+  
+  <update id="updateMenuSortNum" parameterType="map">
+    UPDATE SYS_MENU SET SORT_NUM = #{sortNum,jdbcType=NUMERIC},LAST_UPDATED_BY = #{lastUpdatedBy,jdbcType=NUMERIC}, LAST_UPDATED_DATE = #{lastUpdatedDate,jdbcType=TIMESTAMP} WHERE MENU_ID = #{menuId,jdbcType=NUMERIC}
+  </update>
+  
+  <update id="updateMenuLevel" parameterType="map">
+    UPDATE SYS_MENU SET LEVEL_NUM = #{levelNum,jdbcType=NUMERIC}, LAST_UPDATED_BY = #{lastUpdatedBy,jdbcType=NUMERIC}, LAST_UPDATED_DATE = #{lastUpdatedDate,jdbcType=TIMESTAMP} WHERE MENU_ID = #{menuId,jdbcType=NUMERIC}
+  </update>
+  
+  <update id="updateMenuParent" parameterType="map">
+    UPDATE SYS_MENU SET LEVEL_NUM = #{levelNum,jdbcType=NUMERIC}, PARENT_ID = #{parentId,jdbcType=NUMERIC},LAST_UPDATED_BY = #{lastUpdatedBy,jdbcType=NUMERIC}, LAST_UPDATED_DATE = #{lastUpdatedDate,jdbcType=TIMESTAMP} WHERE MENU_ID = #{menuId,jdbcType=NUMERIC}
+  </update>
+
+</mapper>

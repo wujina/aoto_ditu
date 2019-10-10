@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aoto.framework.security.persistence.inf.RoleMapper">
+
+  <resultMap id="selectRolesByPageMap" type="map">
+    <id column="ROLE_ID" property="roleId" javaType="int" jdbcType="NUMERIC" />
+    <result column="ROLE_NAME" property="roleName" javaType="String" jdbcType="VARCHAR" />
+    <result column="ORG_ID" property="orgId" javaType="int" jdbcType="NUMERIC" />
+    <result column="ORG_NAME" property="orgName" javaType="String" jdbcType="VARCHAR" />
+    <result column="INHERITED_NAME" property="inheritedName" javaType="String" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" javaType="String" jdbcType="VARCHAR" />
+    <result column="CREATED_DATE" property="createdDate" javaType="Date" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPDATED_DATE" property="lastUpdatedDate" javaType="Date" jdbcType="TIMESTAMP" />
+    <result column="CREATED_BY_NAME" property="createdByName" javaType="String" jdbcType="VARCHAR" />
+    <result column="LAST_UPDATED_BY_NAME" property="lastUpdatedByName" javaType="String" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="selectRolesByUserIdMap" type="map">
+    <id column="ROLE_ID" property="roleId" javaType="int" jdbcType="NUMERIC" />
+    <result column="ROLE_NAME" property="roleName" javaType="String" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <insert id="insertRole" parameterType="map">
+    INSERT INTO SYS_ROLE (ROLE_ID, ROLE_NAME, ROLE_TYPE, ORG_ID, REMARK, DELETED, CREATED_BY, CREATED_DATE, LAST_UPDATED_BY, LAST_UPDATED_DATE)
+    values
+    (#{roleId,jdbcType=NUMERIC}, #{roleName,jdbcType=VARCHAR}, #{roleType,jdbcType=NUMERIC}, #{orgId,jdbcType=NUMERIC},#{remark,jdbcType=VARCHAR},#{deleted,jdbcType=NUMERIC},#{createdBy,jdbcType=NUMERIC}, #{createdDate,jdbcType=TIMESTAMP},#{lastUpdatedBy,jdbcType=NUMERIC},#{lastUpdatedDate,jdbcType=TIMESTAMP})
+  </insert>
+  
+  <insert id="insertRoleFun" parameterType="map">
+    INSERT INTO SYS_ROLE_FUN (ROLE_ID, FUN_ID) VALUES (#{roleId,jdbcType=NUMERIC}, #{funId,jdbcType=NUMERIC})
+  </insert>
+  
+  <insert id="insertRoleUser" parameterType="map">
+    INSERT INTO SYS_ROLE_USER (ROLE_ID, USER_ID) VALUES (#{roleId,jdbcType=NUMERIC}, #{userId,jdbcType=NUMERIC})
+  </insert>
+
+  <update id="deleteRole" parameterType="int">
+    DELETE FROM SYS_ROLE WHERE ROLE_ID = #{roleId,jdbcType=NUMERIC}
+  </update>
+  
+  <delete id="deleteRoleFun" parameterType="int">
+    DELETE FROM SYS_ROLE_FUN WHERE ROLE_ID = #{roleId,jdbcType=NUMERIC}
+  </delete>
+  
+  <delete id="deleteRoleUser" parameterType="int">
+    DELETE FROM SYS_ROLE_USER WHERE ROLE_ID = #{roleId,jdbcType=NUMERIC}
+  </delete>
+  
+  <delete id="deleteCommRoleUser" parameterType="map">
+    DELETE FROM SYS_ROLE_USER ru WHERE ROLE_ID = #{roleId,jdbcType=NUMERIC} AND EXISTS (SELECT USER_ID from SYS_USER u, SYS_ORG o WHERE u.USER_ID = ru.USER_ID and u.ORG_ID = o.ORG_ID and u.ORG_ID IN (SELECT ORG_ID FROM SYS_ORG START WITH ORG_ID = #{orgId,jdbcType=NUMERIC} CONNECT BY PARENT_ID = PRIOR ORG_ID))
+  </delete>
+    
+  <update id="updateRole" parameterType="map">
+    UPDATE SYS_ROLE SET ROLE_NAME = #{roleName,jdbcType=VARCHAR},REMARK =#{remark,jdbcType=NUMERIC},LAST_UPDATED_BY = #{lastUpdatedBy,jdbcType=NUMERIC},LAST_UPDATED_DATE = #{lastUpdatedDate,jdbcType=TIMESTAMP} WHERE ROLE_ID = #{roleId,jdbcType=NUMERIC}
+  </update>
+
+  <select id="selectCountByNameAndOrgId" parameterType="map" resultType="int">
+    SELECT COUNT(1) FROM SYS_ROLE WHERE ROLE_NAME = #{roleName,jdbcType=VARCHAR} 
+    AND DELETED = 0
+    <if test="orgId != null and orgId != 0">
+      AND ORG_ID = #{orgId,jdbcType=NUMERIC}
+    </if>
+    <if test="roleId > 0">
+      AND ROLE_ID != #{roleId,jdbcType=NUMERIC}
+    </if>
+  </select>
+  
+  <select id="selectRolesByUserId" parameterType="int" resultMap="selectRolesByUserIdMap">
+    SELECT r.ROLE_ID, r.ROLE_NAME from SYS_ROLE_USER u, SYS_ROLE r where u.ROLE_ID = r.ROLE_ID and u.USER_ID = #{userId,jdbcType=NUMERIC} and r.deleted = 0
+  </select>
+  
+  <select id="selectRolesByFunId" parameterType="int" resultType="int">
+    SELECT ROLE_ID FROM SYS_ROLE_FUN WHERE FUN_ID = #{funId,jdbcType=NUMERIC}
+  </select>
+  
+  <select id="selectRolesByPage" resultMap="selectRolesByPageMap">
+    SELECT r.ROLE_ID,r.ROLE_NAME,o.ORG_ID,o.ORG_NAME,o.INHERITED_NAME,r.REMARK,r.CREATED_DATE,r.LAST_UPDATED_DATE,GET_REAL_NAME(r.CREATED_BY) AS CREATED_BY_NAME,GET_REAL_NAME(r.LAST_UPDATED_BY) AS LAST_UPDATED_BY_NAME
+    FROM SYS_ROLE r, SYS_ORG o WHERE r.ORG_ID = o.ORG_ID
+     <if test="roleName != null and roleName != ''">
+       AND INSTR(r.ROLE_NAME, #{roleName,jdbcType=VARCHAR}) > 0
+     </if>
+     <if test="roleType != null">
+       AND r.ROLE_TYPE = #{roleType,jdbcType=NUMERIC}
+     </if>
+     <choose>
+       <when test="containSub == true">
+         AND r.ORG_ID IN (SELECT ORG_ID FROM SYS_ORG START WITH ORG_ID = #{orgId,jdbcType=NUMERIC} CONNECT BY PARENT_ID = PRIOR ORG_ID)
+       </when>
+       <otherwise>
+         AND r.ORG_ID = #{orgId,jdbcType=NUMERIC}
+       </otherwise>
+     </choose>
+    AND r.DELETED = 0 ORDER BY r.LAST_UPDATED_DATE DESC,r.ROLE_ID DESC
+  </select>
+  
+  <select id="selectCommRolesByPage" resultMap="selectRolesByPageMap">
+    SELECT ROLE_ID,ROLE_NAME,REMARK,CREATED_DATE,LAST_UPDATED_DATE,GET_REAL_NAME(CREATED_BY) AS CREATED_BY_NAME,GET_REAL_NAME(LAST_UPDATED_BY) AS LAST_UPDATED_BY_NAME
+    FROM SYS_ROLE WHERE 1=1
+     <if test="roleName != null and roleName != ''">
+       AND INSTR(ROLE_NAME, #{roleName,jdbcType=VARCHAR}) > 0
+     </if>
+     <if test="roleType != null">
+       AND ROLE_TYPE = #{roleType,jdbcType=NUMERIC}
+     </if>     
+    AND DELETED = 0 ORDER BY LAST_UPDATED_DATE DESC,ROLE_ID DESC
+  </select>
+
+</mapper>

@@ -1,0 +1,23 @@
+#proxool.alias=avs
+#proxool.driver=oracle.jdbc.OracleDriver
+#proxool.url=jdbc:oracle:thin:@172.16.210.179:1521:ORCL
+#proxool.user=avs
+#proxool.password=avs
+#proxool.trace=true
+#proxool.prototypeCount=3
+#proxool.maximumConnectionCount=10
+#proxool.minimumConnectionCount=2
+#proxool.simultaneousBuildThrottle=5
+#proxool.houseKeepingTestSql=select sysdate from dual
+
+proxool.alias=framework
+proxool.driver=com.mysql.jdbc.Driver
+proxool.url=jdbc:mysql://172.16.210.179:3306/framework?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+proxool.user=framework
+proxool.password=aoto123
+proxool.trace=true
+proxool.prototypeCount=3
+proxool.maximumConnectionCount=10
+proxool.minimumConnectionCount=2
+proxool.simultaneousBuildThrottle=5
+proxool.houseKeepingTestSql=select now()

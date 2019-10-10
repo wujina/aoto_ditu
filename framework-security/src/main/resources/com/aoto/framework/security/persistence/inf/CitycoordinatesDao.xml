@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.aoto.framework.security.persistence.inf.CitycoordinatesDao">
+
+  <sql id="table">citycoordinates</sql>
+  
+  <sql id="fields">CityID, CityName, AdministrativeAreaID, AdministrativeAreaName, center_x, center_y</sql>
+  
+  <resultMap type="com.aoto.framework.security.models.Citycoordinates" id="baseResultMap">
+    <result property="cityID" column="CityID"/>
+    <result property="cityName" column="CityName"/>
+    <result property="administrativeAreaID" column="AdministrativeAreaID"/>
+    <result property="administrativeAreaName" column="AdministrativeAreaName"/>
+    <result property="center_x" column="CenterX"/>
+    <result property="center_y" column="CenterY"/>
+  </resultMap>
+  <insert id="save" parameterType="com.aoto.framework.security.models.Citycoordinates">
+        INSERT INTO citycoordinates
+        (
+        CityID,
+        CityName,
+        AdministrativeAreaID,
+        AdministrativeAreaName,
+        CenterX,
+        CenterY
+        )
+        VALUES
+        (
+        #{cityID,jdbcType=VARCHAR},
+        #{cityName,jdbcType=VARCHAR},
+        #{administrativeAreaID,jdbcType=VARCHAR},
+        #{administrativeAreaName,jdbcType=VARCHAR},
+        #{center_x,jdbcType=VARCHAR},
+        #{center_y,jdbcType=VARCHAR}
+        )
+  </insert>
+  <select id="getAll" resultMap="baseResultMap">
+        SELECT
+        CityID,
+        CityName,
+        AdministrativeAreaID,
+        AdministrativeAreaName,
+        CenterX,
+        CenterY
+        FROM citycoordinates
+  </select>
+
+
+</mapper>

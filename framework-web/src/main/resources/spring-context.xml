@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:context="http://www.springframework.org/schema/context" xmlns:util="http://www.springframework.org/schema/util" xmlns:p="http://www.springframework.org/schema/p"
+  xmlns:tx="http://www.springframework.org/schema/tx" xmlns:cache="http://www.springframework.org/schema/cache" xmlns:task="http://www.springframework.org/schema/task"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+  http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+  http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+    http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-3.2.xsd
+    http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.2.xsd">
+
+  <import resource="spring-security.xml" />
+  <import resource="spring-cache.xml" />
+  <!-- 
+  <import resource="spring-ignite.xml" />  
+  <import resource="spring-cxf.xml" /> 
+  <import resource="spring-mina.xml" />
+  -->
+
+  <context:component-scan base-package="com.aoto" use-default-filters="false">
+    <context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+    <context:include-filter type="annotation" expression="org.springframework.stereotype.Component" />
+      <!-- 
+    <context:exclude-filter type="assignable" expression="com.aoto.framework.security.service.impl.UrlServiceImpl" />
+     -->
+  </context:component-scan>
+
+  <bean id="springContextHolder" class="com.aoto.framework.spring.SpringContextHolder" />
+  
+  <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="locations">
+      <array>
+        <value>classpath:conf/proxool.properties</value>
+        <value>classpath:conf/paramters.properties</value>
+      </array>
+    </property>
+  </bean>
+
+  <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+    <property name="basename" value="/static/js/locale/framework" />
+    <property name="cacheSeconds" value="86400"/> 
+    <property name="useCodeAsDefaultMessage" value="true" />
+  </bean>
+  
+  <!-- 
+  <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+      <property name="jndiName" value="java:comp/env/jdbc/oracle/frk">
+      </property>
+  </bean> 
+-->
+  <bean id="dataSource" class="org.logicalcobwebs.proxool.ProxoolDataSource" destroy-method="reset">
+    <property name="alias" value="${proxool.alias}" />
+    <property name="driver" value="${proxool.driver}" />
+    <property name="user" value="${proxool.user}" />
+    <property name="password" value="${proxool.password}" />
+    <property name="driverUrl" value="${proxool.url}" />
+    <property name="trace" value="${proxool.trace}" />
+    <property name="prototypeCount" value="${proxool.prototypeCount}" />
+    <property name="maximumConnectionCount" value="${proxool.maximumConnectionCount}" />
+    <property name="minimumConnectionCount" value="${proxool.minimumConnectionCount}" />
+    <property name="simultaneousBuildThrottle" value="${proxool.simultaneousBuildThrottle}" />
+    <property name="houseKeepingTestSql" value="${proxool.houseKeepingTestSql}" />
+  </bean>
+  
+  <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <property name="dataSource" ref="dataSource" />
+  </bean>
+
+  <tx:annotation-driven transaction-manager="transactionManager" />
+
+  <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <property name="dataSource" ref="dataSource" />
+    <property name="configLocation" value="classpath:spring-mybatis.xml" />
+    <property name="plugins">
+      <list>
+        <bean class="com.aoto.framework.mybatis.pagination.PagingInterceptor">
+          <property name="dialect">
+            <!-- <bean class="com.aoto.framework.mybatis.pagination.dialect.OracleDialect" /> -->
+            <bean class="com.aoto.framework.mybatis.pagination.dialect.MysqlDialect" />
+          </property>
+          <property name="sqlRegex" value=".*ByPage" />
+        </bean>
+        <bean class="com.aoto.framework.mybatis.UpdateInterceptor">
+          <property name="excepted">
+            <list>
+              <value>com.aoto.framework.logging.persistence.inf</value>
+              <value>com.aoto.framework.security.persistence.inf.RoleMapper.insertRoleFun</value>
+              <value>com.aoto.framework.security.persistence.inf.RoleMapper.insertRoleUser</value>
+              <value>com.aoto.framework.security.persistence.inf.RoleMapper.deleteRoleFun</value>
+              <value>com.aoto.framework.security.persistence.inf.RoleMapper.deleteRoleUser</value>
+            </list>
+          </property>
+        </bean>
+      </list>
+    </property>
+    <!-- 
+    <property name="typeAliasesPackage"
+      value="com.aoto.avs.*.models,com.aoto.avs.*.models" >
+    </property> -->
+  </bean>
+  
+  <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+    <constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
+  </bean>
+
+  <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    <property name="basePackage" value="com.aoto.*.*.persistence.inf" />
+    <property name="sqlSessionTemplateBeanName" value="sqlSessionTemplate"/>
+  </bean>
+  
+  <task:scheduled-tasks scheduler="scheduler">
+    <task:scheduled ref="securityMetadataSource" method="watch" fixed-delay="30000" initial-delay="10000" />
+  </task:scheduled-tasks>
+
+  <task:scheduler id="scheduler" pool-size="1" />
+  
+  <bean id="httpClient" class="com.aoto.framework.rest.HttpClientFactory" factory-method="create" />
+  <bean id="clientHttpRequestFactory" class="org.springframework.http.client.HttpComponentsClientHttpRequestFactory">
+    <constructor-arg ref="httpClient" />
+  </bean>
+  <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+    <constructor-arg ref="clientHttpRequestFactory" />
+    <property name="messageConverters">
+      <list>
+        <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+        <bean class="org.springframework.http.converter.StringHttpMessageConverter" />
+        <bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
+        <bean class="org.springframework.http.converter.FormHttpMessageConverter" />
+      </list>
+    </property>
+  </bean>
+</beans>

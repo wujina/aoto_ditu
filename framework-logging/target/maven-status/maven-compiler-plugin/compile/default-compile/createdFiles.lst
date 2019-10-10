@@ -1,0 +1,6 @@
+com\aoto\framework\logging\service\inf\LogService.class
+com\aoto\framework\logging\service\impl\LogServiceImpl.class
+com\aoto\framework\logging\models\LoginLogModel.class
+com\aoto\framework\logging\models\LoginLogQuery.class
+com\aoto\framework\logging\persistence\inf\LogMapper.class
+com\aoto\framework\logging\web\controllers\LogController.class

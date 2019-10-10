@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+  <settings>
+    <setting name="cacheEnabled" value="false" />
+    <setting name="callSettersOnNulls" value="true" />
+  </settings>
+  
+  <mappers>
+    <!-- 
+    <mapper resource="com/aoto/framework/logging/persistence/inf/LogMapper.xml"/>
+    <mapper resource="com/aoto/framework/security/persistence/inf/DicMapper.xml"/>
+    <mapper resource="com/aoto/framework/security/persistence/inf/FunctionMapper.xml"/>
+    <mapper resource="com/aoto/framework/security/persistence/inf/MenuMapper.xml"/>
+    <mapper resource="com/aoto/framework/security/persistence/inf/OrgMapper.xml"/>
+    <mapper resource="com/aoto/framework/security/persistence/inf/RoleMapper.xml"/>
+    <mapper resource="com/aoto/framework/security/persistence/inf/UrlMapper.xml"/>
+    <mapper resource="com/aoto/framework/security/persistence/inf/UserMapper.xml"/>
+     -->
+    <mapper resource="com/aoto/framework/logging/persistence/inf/LogMapper4Mysql.xml"/>
+    <mapper resource="com/aoto/framework/security/persistence/inf/DicMapper4Mysql.xml"/>
+    <mapper resource="com/aoto/framework/security/persistence/inf/FunctionMapper4Mysql.xml"/>
+    <mapper resource="com/aoto/framework/security/persistence/inf/MenuMapper4Mysql.xml"/>
+    <mapper resource="com/aoto/framework/security/persistence/inf/OrgMapper4Mysql.xml"/>
+    <mapper resource="com/aoto/framework/security/persistence/inf/RoleMapper4Mysql.xml"/>
+    <mapper resource="com/aoto/framework/security/persistence/inf/UrlMapper4Mysql.xml"/>
+    <mapper resource="com/aoto/framework/security/persistence/inf/UserMapper4Mysql.xml"/>
+    
+  </mappers> 
+
+</configuration>

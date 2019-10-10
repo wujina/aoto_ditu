@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="5.6.1" timestamp="2019-08-29T13:29:48.901">
+<file name="C:\Users\admin\Desktop\newaoto\framework-security\src\main\java\com\aoto\framework\security\web\access\intercept\FilterInvocationSecurityMetadataSourceImpl.java">
+<violation beginline="404" endline="404" begincolumn="18" endcolumn="74" rule="UselessParentheses" ruleset="Unnecessary" package="com.aoto.framework.security.web.access.intercept" class="FilterInvocationSecurityMetadataSourceImpl" method="watch" externalInfoUrl="https://pmd.github.io/pmd-5.6.1/pmd-java/rules/java/unnecessary.html#UselessParentheses" priority="4">
+Useless parentheses.
+</violation>
+<violation beginline="405" endline="405" begincolumn="25" endcolumn="69" rule="UselessParentheses" ruleset="Unnecessary" package="com.aoto.framework.security.web.access.intercept" class="FilterInvocationSecurityMetadataSourceImpl" method="watch" externalInfoUrl="https://pmd.github.io/pmd-5.6.1/pmd-java/rules/java/unnecessary.html#UselessParentheses" priority="4">
+Useless parentheses.
+</violation>
+</file>
+</pmd>

@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aoto.framework.security.persistence.inf.RoomInfoMapper">
+
+    <resultMap id="roomInfoMapper" type="map">
+        <result column="RoomID" property="roomID" javaType="int" jdbcType="NUMERIC" />
+        <result column="RoomName" property="roomName" javaType="String" jdbcType="VARCHAR" />
+        <result column="Community" property="community" javaType="String" jdbcType="VARCHAR" />
+        <result column="Rent" property="rent" javaType="int" jdbcType="NUMERIC" />
+        <result column="HouseType" property="houseType" javaType="String" jdbcType="VARCHAR" />
+        <result column="Oriented" property="oriented" javaType="String" jdbcType="VARCHAR" />
+        <result column="RentType" property="rentType" javaType="String" jdbcType="VARCHAR" />
+        <result column="RoomSize" property="roomSize" javaType="double" jdbcType="DOUBLE" />
+        <result column="Address" property="address" javaType="String" jdbcType="VARCHAR" />
+        <result column="IndoorStructure" property="indoorStructure" javaType="String" jdbcType="VARCHAR" />
+        <result column="Colour" property="colour" javaType="String" jdbcType="VARCHAR" />
+        <result column="DetailedIntroduction" property="detailedIntroduction" javaType="String" jdbcType="VARCHAR" />
+        <result column="PaymentMethod" property="paymentMethod" javaType="String" jdbcType="VARCHAR" />
+        <result column="BuildingType" property="buildingType" javaType="String" jdbcType="VARCHAR" />
+        <result column="AdministrativeArea" property="administrativeArea" javaType="String" jdbcType="VARCHAR" />
+        <result column="IndoorFacilities" property="indoorFacilities" javaType="String" jdbcType="VARCHAR" />
+        <result column="OutdoorFacilities" property="outdoorFacilities" javaType="String" jdbcType="VARCHAR" />
+        <result column="HouseAdvantage" property="houseAdvantage" javaType="String" jdbcType="VARCHAR" />
+        <result column="Images" property="images" javaType="String" jdbcType="VARCHAR" />
+        <result column="QRCode" property="qrcode" javaType="String" jdbcType="VARCHAR" />
+        <result column="VisitTime" property="visitTime" javaType="String" jdbcType="VARCHAR" />
+        <result column="Floor" property="floor" javaType="String" jdbcType="VARCHAR" />
+        <result column="PublishingMethod" property="publishingMethod" javaType="String" jdbcType="VARCHAR" />
+        <result column="WindowNum" property="windowNum" javaType="int" jdbcType="NUMERIC" />
+        <result column="ParkSpace" property="parkSpace" javaType="String" jdbcType="VARCHAR" />
+        <result column="BuildYear" property="buildYear" javaType="int" jdbcType="NUMERIC" />
+        <result column="Decoration" property="decoration" javaType="String" jdbcType="VARCHAR" />
+        <result column="PublicDate" property="publicDate" javaType="Date" jdbcType="TIMESTAMP" />
+        <result column="UpdateDate" property="updateDate" javaType="Date" jdbcType="TIMESTAMP" />
+        <result column="HouseID" property="houseID" javaType="String" jdbcType="VARCHAR" />
+        <result column="CommunityLongitude" property="communityLongitude" javaType="String" jdbcType="VARCHAR" />
+        <result column="CommunityDimension" property="communityDimension" javaType="String" jdbcType="VARCHAR" />
+        <result column="RoomLongitude" property="roomLongitude" javaType="String" jdbcType="VARCHAR" />
+        <result column="RoomDimension" property="roomDimension" javaType="String" jdbcType="VARCHAR" />
+        <result column="RoomStatus" property="roomStatus" javaType="String" jdbcType="VARCHAR" />
+        <result column="RoomType" property="roomType" javaType="String" jdbcType="VARCHAR" />
+        <result column="RoomCheck" property="roomCheck" javaType="String" jdbcType="VARCHAR" />
+        <result column="RoomCause" property="roomCause" javaType="String" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <insert id="insertRoomInfo" parameterType="map" useGeneratedKeys="true" keyProperty="roomID">
+        INSERT INTO roominfo
+        (
+        RoomName,
+        Community,
+        Rent,
+        HouseType,
+        Oriented,
+        RentType,
+        RoomSize,
+        address,
+        IndoorStructure,
+        Colour,
+        DetailedIntroduction,
+        PaymentMethod,
+        BuildingType,
+        AdministrativeArea,
+        IndoorFacilities,
+        OutdoorFacilities,
+        HouseAdvantage,
+        Images,
+        QRCode,
+        VisitTime,
+        Floor,
+        PublishingMethod,
+        WindowNum,
+        ParkSpace,
+        BuildYear,
+        Decoration,
+        PublicDate,
+        UpdateDate,
+        HouseID,
+        CommunityLongitude,
+        CommunityDimension,
+        RoomLongitude,
+        RoomDimension,
+        RoomStatus,
+        RoomType,
+        RoomCheck,
+        UserID
+        )
+        VALUES
+        (
+        #{roomName,jdbcType=VARCHAR},
+        #{community,jdbcType=VARCHAR},
+        #{rent,jdbcType=NUMERIC},
+        #{houseType,jdbcType=VARCHAR},
+        #{oriented,jdbcType=VARCHAR},
+        #{rentType,jdbcType=VARCHAR},
+        #{roomSize,jdbcType=DOUBLE},
+        #{address,jdbcType=VARCHAR},
+        #{indoorStructure,jdbcType=VARCHAR},
+        #{colour,jdbcType=VARCHAR},
+        #{detailedIntroduction,jdbcType=VARCHAR},
+        #{paymentMethod,jdbcType=VARCHAR},
+        #{buildingType,jdbcType=VARCHAR},
+        #{administrativeArea,jdbcType=VARCHAR},
+        #{indoorFacilities,jdbcType=VARCHAR},
+        #{outdoorFacilities,jdbcType=VARCHAR},
+        #{houseAdvantage,jdbcType=VARCHAR},
+        #{images,jdbcType=VARCHAR},
+        #{qrcode,jdbcType=VARCHAR},
+        #{visitTime,jdbcType=VARCHAR},
+        #{floor,jdbcType=VARCHAR},
+        #{publishingMethod,jdbcType=VARCHAR},
+        #{windowNum,jdbcType=NUMERIC},
+        #{parkSpace,jdbcType=VARCHAR},
+        #{buildYear,jdbcType=NUMERIC},
+        #{decoration,jdbcType=VARCHAR},
+        #{publicDate,jdbcType=TIMESTAMP},
+        #{updateDate,jdbcType=TIMESTAMP},
+        #{houseID,jdbcType=VARCHAR},
+        #{communityLongitude,jdbcType=VARCHAR},
+        #{communityDimension,jdbcType=VARCHAR},
+        #{roomLongitude,jdbcType=VARCHAR},
+        #{roomDimension,jdbcType=VARCHAR},
+        #{roomStatus,jdbcType=VARCHAR},
+        #{roomType,jdbcType=VARCHAR},
+        #{roomCheck,jdbcType=VARCHAR},
+        #{userID,jdbcType=NUMERIC}
+        )
+    </insert>
+
+    <select id="selectRoomInfoByHouseID" resultMap="roomInfoMapper" parameterType="java.lang.String" >
+        SELECT
+        r.RoomID,
+        r.RoomName,
+        r.Community,
+        r.Rent,
+        r.HouseType,
+        r.Oriented,
+        r.RentType,
+        r.RoomSize,address,
+        r.IndoorStructure,
+        r.Colour,
+        r.DetailedIntroduction,
+        r.PaymentMethod,BuildingType,
+        r.AdministrativeArea,
+        r.IndoorFacilities,
+        r.OutdoorFacilities,
+        r.HouseAdvantage,
+        r.Images,
+        r.QRCode,
+        r.VisitTime,
+        r.Floor,
+        r.PublishingMethod,
+        r.WindowNum,
+        r.ParkSpace,
+        r.BuildYear,
+        r.Decoration,
+        r.PublicDate,
+        r.UpdateDate,
+        r.HouseID,
+        r.CommunityLongitude,
+        r.CommunityDimension,
+        r.RoomLongitude,
+        r.RoomDimension,
+        r.RoomStatus,
+        r.RoomType,
+        r.RoomCheck
+        FROM roominfo r WHERE r.HouseID = #{houseID,jdbcType=VARCHAR}
+    </select>
+
+    <update id="updateOrg4Import" parameterType="map">
+        UPDATE roominfo SET
+        RoomName = #{roomName,jdbcType=VARCHAR},
+        Community = #{community,jdbcType=VARCHAR},
+        Rent = #{rent,jdbcType=NUMERIC},
+        HouseType = #{houseType,jdbcType=VARCHAR},
+        Oriented = #{oriented,jdbcType=VARCHAR},
+        RentType = #{rentType,jdbcType=VARCHAR},
+        RoomSize = #{roomSize,jdbcType=DOUBLE},
+        Address = #{address,jdbcType=VARCHAR},
+        IndoorStructure = #{indoorStructure,jdbcType=VARCHAR},
+        Colour = #{colour,jdbcType=VARCHAR},
+        DetailedIntroduction = #{detailedIntroduction,jdbcType=VARCHAR},
+        PaymentMethod = #{paymentMethod,jdbcType=VARCHAR},
+        BuildingType = #{buildingType,jdbcType=VARCHAR},
+        AdministrativeArea = #{administrativeArea,jdbcType=VARCHAR},
+        IndoorFacilities = #{indoorFacilities,jdbcType=VARCHAR},
+        OutdoorFacilities = #{outdoorFacilities,jdbcType=VARCHAR},
+        HouseAdvantage = #{houseAdvantage,jdbcType=VARCHAR},
+        Images = #{images,jdbcType=VARCHAR},
+        QRCode = #{qrcode,jdbcType=VARCHAR},
+        VisitTime = #{visitTime,jdbcType=VARCHAR},
+        Floor = #{floor,jdbcType=VARCHAR},
+        PublishingMethod = #{publishingMethod,jdbcType=VARCHAR},
+        WindowNum = #{windowNum,jdbcType=NUMERIC},
+        ParkSpace = #{parkSpace,jdbcType=VARCHAR},
+        BuildYear = #{buildYear,jdbcType=NUMERIC},
+        Decoration = #{decoration,jdbcType=VARCHAR},
+        PublicDate = #{publicDate,jdbcType=TIMESTAMP},
+        UpdateDate = #{updateDate,jdbcType=TIMESTAMP},
+        HouseID = #{houseID,jdbcType=VARCHAR},
+        CommunityLongitude = #{communityLongitude,jdbcType=VARCHAR},
+        CommunityDimension = #{communityDimension,jdbcType=VARCHAR},
+        RoomLongitude = #{roomLongitude,jdbcType=VARCHAR},
+        RoomDimension = #{roomDimension,jdbcType=VARCHAR},
+        RoomStatus = #{roomStatus,jdbcType=VARCHAR},
+        RoomType = #{roomType,jdbcType=VARCHAR},
+        RoomCheck = #{roomCheck,jdbcType=VARCHAR},
+        RoomCause = #{roomCause,jdbcType=VARCHAR}
+        WHERE RoomID = #{roomID,jdbcType=NUMERIC}
+    </update>
+    <delete id="deleteRoomInfo" parameterType="java.lang.String">
+        delete FROM roominfo WHERE RoomID = #{roomID,jdbcType=VARCHAR}
+    </delete>
+
+    <select id="selectUrlByPage" parameterType="map" resultMap="roomInfoMapper">
+        SELECT
+        @x:=0,
+        r.RoomID,
+        r.RoomName,
+        r.Community,
+        r.Rent,
+        r.HouseType,
+        r.Oriented,
+        r.RentType,
+        r.RoomSize,address,
+        r.IndoorStructure,
+        r.Colour,
+        r.DetailedIntroduction,
+        r.PaymentMethod,BuildingType,
+        r.AdministrativeArea,
+        r.IndoorFacilities,
+        r.OutdoorFacilities,
+        r.HouseAdvantage,
+        r.Images,
+        r.QRCode,
+        r.VisitTime,
+        r.Floor,
+        r.PublishingMethod,
+        r.WindowNum,
+        r.ParkSpace,
+        r.BuildYear,
+        r.Decoration,
+        r.PublicDate,
+        r.UpdateDate,
+        r.HouseID,
+        r.CommunityLongitude,
+        r.CommunityDimension,
+        r.RoomLongitude,
+        r.RoomDimension,
+        r.RoomStatus,
+        r.RoomType,
+        r.RoomCheck,
+        r.RoomCause
+        FROM roominfo r WHERE 1=1 and UserID=#{userID,jdbcType=VARCHAR}
+        <if test="administrativeArea != null and adadministrativeAreaAllministrativeArea != ''">
+            AND r.AdministrativeArea = #{administrativeArea,jdbcType=VARCHAR}
+        </if>
+        <if test="roomName != null and roomName != '' ">
+            AND r.RoomName like  #{roomName,jdbcType=VARCHAR}"%"
+        </if>
+        <if test="roomType != null and roomType != '' ">
+            AND r.RoomType = #{roomType,jdbcType=VARCHAR}
+        </if>
+        <if test="roomStatus != null and roomStatus != '' ">
+            AND r.RoomStatus = #{roomStatus,jdbcType=VARCHAR}
+        </if>
+        ORDER BY r.UpdateDate desc
+    </select>
+
+    <select id="administrativeAreaAll" resultType="String">
+        select  distinct AdministrativeArea from roominfo where UserID=#{userID,jdbcType=NUMERIC}
+    </select>
+
+    <select id="selectRoomID" resultMap="roomInfoMapper" parameterType="Int">
+        SELECT
+        r.RoomID,
+        r.RoomName,
+        r.Community,
+        r.Rent,
+        r.HouseType,
+        r.Oriented,
+        r.RentType,
+        r.RoomSize,address,
+        r.IndoorStructure,
+        r.Colour,
+        r.DetailedIntroduction,
+        r.PaymentMethod,BuildingType,
+        r.AdministrativeArea,
+        r.IndoorFacilities,
+        r.OutdoorFacilities,
+        r.HouseAdvantage,
+        r.Images,
+        r.QRCode,
+        r.VisitTime,
+        r.Floor,
+        r.PublishingMethod,
+        r.WindowNum,
+        r.ParkSpace,
+        r.BuildYear,
+        r.Decoration,
+        r.PublicDate,
+        r.UpdateDate,
+        r.HouseID,
+        r.CommunityLongitude,
+        r.CommunityDimension,
+        r.RoomLongitude,
+        r.RoomDimension,
+        r.RoomStatus,
+        r.RoomType,
+        r.RoomCheck
+        FROM roominfo r WHERE r.RoomID=#{roomID,jdbcType=NUMERIC}
+    </select>
+    <delete id="deleteRoominfo" parameterType="Int">
+        delete FROM roominfo WHERE RoomID = #{roomID,jdbcType=NUMERIC}
+    </delete>
+    <select id="getRoomID" resultType="int">
+        select max(RoomID) from roominfo;
+    </select>
+
+    <update id="updateImages" parameterType="map">
+        UPDATE roominfo SET
+        Images = #{images,jdbcType=VARCHAR}
+        WHERE RoomID = #{roomID,jdbcType=NUMERIC}
+    </update>
+
+    <select id="roomInfoTotal" resultType="int" parameterType="int">
+        SELECT COUNT(*) FROM roominfo WHERE UserID=#{userid,jdbcType=NUMERIC}
+    </select>
+
+    <select id="getRoomInfoPage" parameterType="map" resultMap="roomInfoMapper">
+        select * from roominfo where UserID=#{userID,jdbcType=NUMERIC} ORDER BY RoomID desc limit #{limit,jdbcType=NUMERIC},#{total,jdbcType=NUMERIC}
+    </select>
+
+</mapper>

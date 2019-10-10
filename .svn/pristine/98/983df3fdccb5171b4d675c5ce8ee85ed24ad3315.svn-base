@@ -1,0 +1,249 @@
+﻿@charset "utf-8";
+
+.l-btn-icon,.panel-icon,.menu-icon,.tabs-icon {
+	left:8px !important;
+	top:25% !important;
+    font-family:FontAwesome !important;
+    font-size:14px !important;
+    line-height:normal !important;
+    text-rendering:auto;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    color:#6699cc;text-align:center;
+}
+.tabs-icon {
+    font-size:16px !important;
+    font-weight:normal;
+}
+
+* {
+	padding:0;
+	margin: 0;
+	font-family: arial,helvetica,sans-serif;
+}
+
+a:link { text-decoration: none;}
+a:hover { text-decoration:underline;} 
+a:visited { text-decoration: none;} 
+
+textarea.form-control {
+  height: auto;
+  resize: none;
+}
+
+textarea[readonly].form-control {
+  background-color: #eee;
+  opacity: 1;
+}
+
+.left {
+	text-align: left;
+}
+
+.center {
+	text-align: center;
+}
+
+.right {
+	text-align: right;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.form-inline .form-group {
+    margin-bottom: 0;
+    margin-right: 15px;
+    vertical-align: middle;
+    display: inline-block;
+    zoom:1;*display: inline; /* IE < 8 */
+}
+  
+.form-inline .form-control {
+  display: inline-block;
+  width: auto;
+  vertical-align: middle;
+}
+
+.form-inline .control-label {
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+.form-inline .radio,
+.form-inline .checkbox {
+  display: inline-block;
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+.form-inline .radio input[type="radio"],
+.form-inline .checkbox input[type="checkbox"] {
+  float: none;
+  margin-left: 0;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  height: 18px;
+  padding: 2px;
+  font-size: 14px;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+}
+
+.form-control:focus {
+  border-color: #66afe9;
+  outline: 0;
+}
+
+.form-control[disabled] {
+  cursor: not-allowed;
+  background-color: #eee;
+  color:#000;
+  opacity: 1;
+}
+
+.form-control[readonly] {
+  cursor: pointer;
+}
+
+.form-grid .form-group {
+	letter-spacing: -0.31em;
+	/* webkit: collapse white-space between units */
+	*letter-spacing: normal; /* reset IE < 8 */
+	word-spacing: -0.43em;
+	/* IE < 8 && gecko: collapse white-space between units */
+	margin-bottom: 10px;
+}
+
+.form-grid .form-group .control-label {
+    text-align: right;
+}
+
+.form-grid .form-group .required {
+    color: #fc4343;
+}
+
+.form-grid .title {
+	font-size: 14px;
+	font-weight: bold;
+	padding: 5px 0;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #ccc;
+}
+
+.col-1,.col-2,.col-3,.col-4,.col-5,.col-6,.col-7,.col-8,.col-9,.col-10,.col-11,.col-12 {
+	display: inline-block;
+	zoom: 1;
+	*display: inline; /* IE < 8: fake inline-block */
+	letter-spacing: normal;
+	word-spacing: normal;
+	vertical-align: middle;
+}
+
+.col-12 {
+	width: 100%;
+}
+
+.col-11 {
+	width: 91.66666667%;
+}
+
+.col-10 {
+	width: 83.33333333%;
+}
+
+.col-9 {
+	width: 75%;
+}
+
+.col-8 {
+	width: 66.66666667%;
+}
+
+.col-7 {
+	width: 58.33333333%;
+}
+
+.col-6 {
+	width: 50%;
+}
+
+.col-5 {
+	width: 41.66666667%;
+}
+
+.col-4 {
+	width: 33.33333333%;
+}
+
+.col-3 {
+	width: 25%;
+}
+
+.col-2 {
+	width: 16.66666667%;
+}
+
+.col-1 {
+	width: 8.33333333%;
+}
+
+.icon-detail {
+	background:url('../icons/detail.png') no-repeat center center;
+}
+.icon-list {
+	background:url('../icons/list.png') no-repeat center center;
+}
+.icon-form-edit {
+	background:url('../icons/form_edit.png') no-repeat center center;
+}
+.icon-reset-password {
+	background:url('../icons/reset_password.png') no-repeat center center;
+}
+.icon-usergroup {
+	background:url('../icons/usergroup.png') no-repeat center center;
+}
+.icon-lock1 {
+	background:url('../icons/lock.png') no-repeat center center;
+}
+.icon-unlock1 {
+	background:url('../icons/unlock.png') no-repeat center center;
+}
+.icon-left {
+	background:url('../icons/left.png') no-repeat center center;
+}
+.icon-right {
+	background:url('../icons/right.png') no-repeat center center;
+}
+.icon-up {
+	background:url('../icons/up.png') no-repeat center center;
+}
+
+.icon-excel{
+	background:url('../icons/excel.png') no-repeat center center;
+}
+
+.icon-folder{
+	background:url('../icons/folder.png') no-repeat center center;
+}
+
+.icon-folderopen{
+	background:url('../icons/folderopen.png') no-repeat center center;
+}
+.tree-node-targeted {
+  background: #99ccff;
+  color: #000000;
+}

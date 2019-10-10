@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aoto.framework.logging.persistence.inf.LogMapper">
+
+  <resultMap id="selectLoginLogsByPageMap" type="map">
+    <result column="USER_ID" property="userId" javaType="int" jdbcType="NUMERIC" />
+    <result column="USERNAME" property="username" javaType="String" jdbcType="VARCHAR" />
+    <result column="REAL_NAME" property="realName" javaType="String" jdbcType="VARCHAR" />
+    <result column="IP" property="ip" javaType="String" jdbcType="VARCHAR" />
+    <result column="INHERITED_NAME" property="inheritedName" javaType="String" jdbcType="VARCHAR" />
+    <result column="LOGIN_DATE" property="loginDate" javaType="Date" jdbcType="TIMESTAMP" />
+    <result column="LOGOUT_DATE" property="logoutDate" javaType="Date" jdbcType="TIMESTAMP" />
+    <result column="OS" property="os" javaType="String" jdbcType="VARCHAR" />
+    <result column="BROWSER" property="browser" javaType="String" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="selectBehaviorLogsByPageMap" type="map">
+    <id column="BEHAVIOR_ID" property="behaviorId" javaType="int" jdbcType="NUMERIC" />
+    <result column="USER_ID" property="userId" javaType="int" jdbcType="NUMERIC" />
+    <result column="USERNAME" property="username" javaType="String" jdbcType="VARCHAR" />
+    <result column="REAL_NAME" property="realName" javaType="String" jdbcType="VARCHAR" />
+    <result column="INHERITED_NAME" property="inheritedName" javaType="String" jdbcType="VARCHAR" />
+    <result column="IP" property="ip" javaType="String" jdbcType="VARCHAR" />
+    <result column="LOGGED_DATE" property="loggedDate" javaType="Date" jdbcType="TIMESTAMP" />
+    <result column="ACTION" property="action" javaType="String" jdbcType="VARCHAR" />
+    <result column="DATA_CHANGED" property="dataChanged" javaType="boolean" jdbcType="NUMERIC" />
+  </resultMap>
+  
+  <resultMap id="selectDataLogsByBehaviorIdMap" type="map">
+    <result column="TABLE_NAME" property="tableName" javaType="String" jdbcType="VARCHAR" />
+    <result column="KEY_VALUE" property="keyValue" javaType="int" jdbcType="VARCHAR" />
+    <result column="COLUMN_NAME" property="columnName" javaType="String" jdbcType="VARCHAR" />
+    <result column="OLD_VALUE" property="oldValue" javaType="String" jdbcType="VARCHAR" />
+    <result column="NEW_VALUE" property="newValue" javaType="String" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <insert id="insertLoginLog" parameterType="map">
+     INSERT INTO SYS_LOGIN_LOG (SESSION_ID, USER_ID, USERNAME, REAL_NAME,IP, ORG_ID, ORG_NAME,INHERITED_NAME,LOGIN_DATE, LOGOUT_DATE, OS, BROWSER, USER_AGENT) VALUES
+     (#{sessionId,jdbcType=VARCHAR}, #{userId,jdbcType=NUMERIC}, #{username,jdbcType=VARCHAR},#{realName,jdbcType=VARCHAR},#{ip,jdbcType=VARCHAR}, #{orgId,jdbcType=NUMERIC}, #{orgName,jdbcType=VARCHAR}, #{inheritedName,jdbcType=VARCHAR},#{loginDate,jdbcType=TIMESTAMP}, #{logoutDate,jdbcType=TIMESTAMP}, #{os,jdbcType=VARCHAR},#{browser,jdbcType=VARCHAR},#{userAgent,jdbcType=VARCHAR})
+  </insert>
+  
+  <insert id="insertBehaviorLog" parameterType="map">
+    <selectKey resultType="int" order="BEFORE" keyProperty="behaviorId">
+      SELECT SEQ_SYS_BEHAVIOR_LOG.NEXTVAL FROM DUAL
+    </selectKey>
+     INSERT INTO SYS_BEHAVIOR_LOG (BEHAVIOR_ID, SESSION_ID, LOGGED_DATE, ACTION, DATA_CHANGED) VALUES (#{behaviorId,jdbcType=NUMERIC}, #{sessionId,jdbcType=VARCHAR}, #{loggedDate,jdbcType=TIMESTAMP}, #{action,jdbcType=VARCHAR}, #{dataChanged,jdbcType=NUMERIC})
+  </insert>
+  
+  <insert id="insertDataLog" parameterType="map">
+     INSERT INTO SYS_DATA_LOG (BEHAVIOR_ID, LOGGED_DATE, TABLE_NAME, COLUMN_NAME, KEY_VALUE, OLD_VALUE, NEW_VALUE) VALUES
+     (#{behaviorId,jdbcType=NUMERIC}, #{loggedDate,jdbcType=TIMESTAMP}, #{tableName,jdbcType=VARCHAR},#{columnName,jdbcType=VARCHAR},#{keyValue,jdbcType=VARCHAR},#{oldValue,jdbcType=VARCHAR},#{newValue,jdbcType=VARCHAR})
+  </insert>
+  
+  <insert id="updateLogoutDate" parameterType="map">
+     UPDATE SYS_LOGIN_LOG SET LOGOUT_DATE = #{logoutDate,jdbcType=TIMESTAMP} WHERE SESSION_ID = #{sessionId,jdbcType=VARCHAR}
+  </insert>
+  
+  <update id="updateUserLogin" parameterType="map">
+    UPDATE SYS_USER SET ERROR_TIME = #{errorTime,jdbcType=NUMERIC},LAST_LOGIN_DATE = #{lastLoginDate,jdbcType=TIMESTAMP}, LAST_LOGIN_IP = #{lastLoginIp,jdbcType=VARCHAR} WHERE USER_ID = #{userId,jdbcType=NUMERIC}
+  </update>
+  
+  <select id="selectDataLogsByBehaviorId" parameterType="int" resultMap="selectDataLogsByBehaviorIdMap">
+    SELECT TABLE_NAME, KEY_VALUE, COLUMN_NAME, OLD_VALUE, NEW_VALUE FROM SYS_DATA_LOG WHERE BEHAVIOR_ID = #{behaviorId,jdbcType=NUMERIC} ORDER BY LOGGED_DATE DESC
+  </select>
+  
+  <select id="selectLoginLogsByPage" parameterType="map" resultMap="selectLoginLogsByPageMap">
+    SELECT SESSION_ID, USER_ID, USERNAME, REAL_NAME, IP, ORG_ID, ORG_NAME, INHERITED_NAME, LOGIN_DATE, LOGOUT_DATE, OS, BROWSER FROM SYS_LOGIN_LOG
+    <where>
+      <if test="username != null and username != ''">
+         AND INSTR(USERNAME || REAL_NAME, #{username,jdbcType=VARCHAR}) > 0
+       </if>
+      <choose>
+       <when test="containSub == true">
+         AND ORG_ID IN (SELECT ORG_ID FROM SYS_ORG START WITH ORG_ID = #{orgId,jdbcType=NUMERIC} CONNECT BY PARENT_ID = PRIOR ORG_ID)
+       </when>
+       <otherwise>
+         AND ORG_ID = #{orgId,jdbcType=NUMERIC}
+       </otherwise>
+     </choose>
+      AND LOGIN_DATE BETWEEN #{beginDate,jdbcType=TIMESTAMP} AND #{endDate,jdbcType=TIMESTAMP}
+    </where>
+    ORDER BY LOGIN_DATE DESC, SESSION_ID DESC
+  </select>
+  
+  <select id="selectBehaviorLogsByPage" parameterType="map" resultMap="selectBehaviorLogsByPageMap">
+    SELECT l.USER_ID, l.USERNAME, l.REAL_NAME, l.INHERITED_NAME, l.IP, t.BEHAVIOR_ID, t.LOGGED_DATE, t.ACTION, t.DATA_CHANGED FROM SYS_BEHAVIOR_LOG t, SYS_LOGIN_LOG l WHERE t.SESSION_ID = l.SESSION_ID
+      <if test="username != null and username != ''">
+         AND INSTR(l.USERNAME || l.REAL_NAME, #{username,jdbcType=VARCHAR}) > 0
+      </if>
+      <choose>
+       <when test="containSub == true">
+         AND l.ORG_ID IN (SELECT ORG_ID FROM SYS_ORG START WITH ORG_ID = #{orgId,jdbcType=NUMERIC} CONNECT BY PARENT_ID = PRIOR ORG_ID)
+       </when>
+       <otherwise>
+         AND l.ORG_ID = #{orgId,jdbcType=NUMERIC}
+       </otherwise>
+     </choose>
+      <if test="dataChanged == true">
+        AND t.DATA_CHANGED = #{dataChanged, jdbcType=NUMERIC}
+      </if>
+      AND t.LOGGED_DATE BETWEEN #{beginDate,jdbcType=TIMESTAMP} AND #{endDate,jdbcType=TIMESTAMP} ORDER BY t.BEHAVIOR_ID DESC
+  </select>
+  
+</mapper>

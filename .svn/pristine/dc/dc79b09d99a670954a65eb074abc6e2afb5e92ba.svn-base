@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aoto.framework.security.persistence.inf.UserMapper">
+
+  <resultMap id="selectUserByNameMap" type="map" >
+    <id column="USER_ID" property="userId" javaType="int" jdbcType="NUMERIC" />
+    <result column="REAL_NAME" property="realName" javaType="String" jdbcType="VARCHAR" />
+    <result column="PWD" property="pwd" javaType="String" jdbcType="VARCHAR" />
+    <result column="USER_PIC_SUFFIX" property="userPicSuffix" javaType="String" jdbcType="VARCHAR" />
+    <result column="USER_PIC_DATA" property="userPicData" javaType="byte[]" jdbcType="BLOB" />
+    <result column="AGE" property="age" javaType="int" jdbcType="NUMERIC" />
+    <result column="BIRTHDAY" property="birthday" javaType="Date" jdbcType="TIMESTAMP" />
+    <result column="ABOUT" property="about" javaType="String" jdbcType="VARBINARY" />
+    <result column="ORG_ID" property="orgId" javaType="int" jdbcType="NUMERIC" />
+    <result column="ORG_CODE" property="orgCode" javaType="String" jdbcType="VARCHAR" />
+    <result column="ORG_NAME" property="orgName" javaType="String" jdbcType="VARCHAR" />
+    <result column="INHERITED_NAME" property="inheritedName" javaType="String" jdbcType="VARCHAR" />
+    <result column="LOCKED" property="locked" javaType="boolean" jdbcType="NUMERIC" />
+  </resultMap>
+  
+  <resultMap id="selectUsersByRoleIdMap" type="map" >
+    <id column="USER_ID" property="userId" javaType="int" jdbcType="NUMERIC" />
+    <result column="USERNAME" property="username" javaType="String" jdbcType="VARCHAR" />
+    <result column="REAL_NAME" property="realName" javaType="String" jdbcType="VARCHAR" />
+    <result column="ORG_NAME" property="orgName" javaType="String" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <resultMap id="selectUsersByPageMap" type="map" >
+    <id column="USER_ID" property="userId" javaType="int" jdbcType="NUMERIC" />
+    <result column="USERNAME" property="username" javaType="String" jdbcType="VARCHAR" />
+    <result column="REAL_NAME" property="realName" javaType="String" jdbcType="VARCHAR" />
+    <result column="ORG_ID" property="orgId" javaType="int" jdbcType="NUMERIC" />
+    <result column="ORG_NAME" property="orgName" javaType="String" jdbcType="VARCHAR" />
+    <result column="INHERITED_NAME" property="inheritedName" javaType="String" jdbcType="VARCHAR" />
+    <result column="LOCKED" property="locked" javaType="boolean" jdbcType="NUMERIC" />
+    <result column="PHONE" property="phone" javaType="String" jdbcType="VARCHAR" />
+    <result column="MOBILE" property="mobile" javaType="String" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" javaType="String" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" javaType="String" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" javaType="String" jdbcType="VARCHAR" />
+    <result column="LAST_LOGIN_DATE" property="lastLoginDate" javaType="Date" jdbcType="TIMESTAMP" />
+    <result column="LAST_LOGIN_IP" property="lastLoginIp" javaType="String" jdbcType="VARCHAR" />
+    <result column="CREATED_DATE" property="createdDate" javaType="Date" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPDATED_DATE" property="lastUpdatedDate" javaType="Date" jdbcType="TIMESTAMP" />
+    <result column="CREATED_BY_NAME" property="createdByName" javaType="String" jdbcType="VARCHAR" />
+    <result column="LAST_UPDATED_BY_NAME" property="lastUpdatedByName" javaType="String" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <insert id="insertUser" parameterType="map">
+    INSERT INTO SYS_USER
+    (USER_ID, USERNAME, REAL_NAME, PWD, ORG_ID, ERROR_TIME, PHONE, MOBILE, EMAIL, ADDRESS, REMARK, LAST_LOGIN_DATE, LAST_LOGIN_IP,
+    LOCKED, DELETED, CREATED_BY, CREATED_DATE, LAST_UPDATED_BY, LAST_UPDATED_DATE)
+    VALUES
+    (#{userId,jdbcType=NUMERIC}, #{username,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, #{orgId,jdbcType=NUMERIC},
+    #{errorTime,jdbcType=NUMERIC}, #{phone,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+    #{address,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{lastLoginDate,jdbcType=TIMESTAMP},
+    #{lastLoginIp,jdbcType=VARCHAR}, #{locked,jdbcType=NUMERIC}, #{deleted,jdbcType=NUMERIC}, #{createdBy,jdbcType=NUMERIC},
+    #{createdDate,jdbcType=TIMESTAMP},
+    #{lastUpdatedBy,jdbcType=NUMERIC}, #{lastUpdatedDate,jdbcType=TIMESTAMP})
+  </insert>
+
+  <update id="updateUser" parameterType="map">
+    UPDATE SYS_USER SET REAL_NAME = #{realName,jdbcType=VARCHAR},PHONE = #{phone,jdbcType=VARCHAR},ORG_ID = #{orgId,jdbcType=NUMERIC},
+    MOBILE = #{mobile,jdbcType=VARCHAR},EMAIL = #{email,jdbcType=VARCHAR},
+    ADDRESS= #{address,jdbcType=VARCHAR} ,REMARK= #{remark,jdbcType=VARCHAR},   
+    LAST_UPDATED_BY = #{lastUpdatedBy,jdbcType=NUMERIC}, LAST_UPDATED_DATE = #{lastUpdatedDate,jdbcType=TIMESTAMP}
+    WHERE USER_ID = #{userId,jdbcType=NUMERIC}
+  </update>
+  
+  <update id="updateUserPassword" parameterType="map">
+    UPDATE SYS_USER SET PWD = #{pwd,jdbcType=VARCHAR},LAST_UPDATED_BY = #{lastUpdatedBy,jdbcType=NUMERIC}, LAST_UPDATED_DATE = #{lastUpdatedDate,jdbcType=TIMESTAMP} WHERE USER_ID = #{userId,jdbcType=NUMERIC}
+  </update>
+  
+  <update id="updateUserLocked" parameterType="map">
+      UPDATE SYS_USER SET LOCKED = #{locked,jdbcType=NUMERIC},LAST_UPDATED_BY = #{lastUpdatedBy,jdbcType=NUMERIC}, 
+      LAST_UPDATED_DATE = #{lastUpdatedDate,jdbcType=TIMESTAMP} WHERE USER_ID = #{userId,jdbcType=NUMERIC}
+  </update>
+  
+  <update id="deleteUser" parameterType="map">
+    UPDATE SYS_USER SET USERNAME = #{username,jdbcType=VARCHAR}, DELETED = #{deleted,jdbcType=NUMERIC}, LAST_UPDATED_BY = #{lastUpdatedBy,jdbcType=NUMERIC}, LAST_UPDATED_DATE = #{lastUpdatedDate,jdbcType=TIMESTAMP} WHERE USER_ID = #{userId,jdbcType=NUMERIC}
+  </update>
+
+  <select id="selectUser" parameterType="int" resultMap="selectUsersByRoleIdMap">
+    SELECT USERNAME FROM SYS_USER WHERE USER_ID = #{userId,jdbcType=NUMERIC}
+  </select>
+  
+  <select id="selectUserByName" parameterType="String" resultMap="selectUserByNameMap">
+    SELECT u.USER_ID, u.REAL_NAME, u.PWD, u.USER_PIC_SUFFIX, u.USER_PIC_DATA, u.AGE, u.BIRTHDAY, u.ABOUT, o.ORG_ID, o.ORG_CODE, o.ORG_NAME, o.INHERITED_NAME, u.LOCKED FROM SYS_USER u, SYS_ORG o WHERE u.ORG_ID = o.ORG_ID AND u.USERNAME = #{username,jdbcType=VARCHAR} AND u.DELETED = 0
+  </select>
+  
+  <select id="selectUsersByRoleId" parameterType="int" resultMap="selectUsersByRoleIdMap">
+    SELECT u.USER_ID,u.USERNAME,u.REAL_NAME,GET_ORG_NAME(u.ORG_ID) AS ORG_NAME FROM SYS_ROLE_USER r, SYS_USER u
+    WHERE u.USER_ID = r.USER_ID AND r.ROLE_ID = #{roleId,jdbcType=NUMERIC} AND u.USER_ID > 0 AND u.DELETED = 0
+  </select>
+  
+  <select id="selectUsersByCommRoleId" parameterType="map" resultMap="selectUsersByRoleIdMap">
+    SELECT u.USER_ID,u.USERNAME,u.REAL_NAME,GET_ORG_NAME(u.ORG_ID) AS ORG_NAME FROM SYS_ROLE_USER r, SYS_USER u
+    WHERE u.USER_ID = r.USER_ID AND r.ROLE_ID = #{roleId,jdbcType=NUMERIC} AND u.USER_ID > 0 AND u.DELETED = 0 
+    AND u.ORG_ID IN (SELECT ORG_ID FROM SYS_ORG WHERE FIND_IN_SET(ORG_ID, GET_ORG_CHILDREN(#{orgId,jdbcType=NUMERIC}))) 
+  </select>
+  
+  <select id="selectUsersExceptByPage" parameterType="map" resultMap="selectUsersByRoleIdMap">
+    SELECT @x:=0, u.USER_ID,u.USERNAME,u.REAL_NAME,GET_ORG_NAME(u.ORG_ID) AS ORG_NAME FROM SYS_USER u WHERE u.USER_ID > 0 AND u.DELETED = 0
+     <if test="excepted != null and excepted != ''">
+       AND NOT EXISTS (SELECT a.USER_ID FROM SYS_USER a WHERE u.USER_ID = a.USER_ID AND a.USER_ID IN (${excepted}))
+     </if>
+     <if test="username != null and username != ''">
+       AND INSTR(CONCAT(u.USERNAME, u.REAL_NAME), #{username,jdbcType=VARCHAR}) > 0
+     </if>
+     <choose>
+       <when test="containSub == true">
+         AND u.ORG_ID IN (SELECT ORG_ID FROM SYS_ORG WHERE FIND_IN_SET(ORG_ID, GET_ORG_CHILDREN(#{orgId,jdbcType=NUMERIC}))) 
+       </when>
+       <otherwise>
+         AND u.ORG_ID = #{orgId,jdbcType=NUMERIC}
+       </otherwise>
+     </choose>
+    ORDER BY u.LAST_UPDATED_DATE DESC
+  </select>
+
+  <select id="selectUsersByPage" parameterType="map" resultMap="selectUsersByPageMap">
+    SELECT @x:=0, u.USER_ID, u.USERNAME, u.REAL_NAME, u.ORG_ID, o.ORG_NAME, o.INHERITED_NAME, u.LOCKED, u.PHONE, u.MOBILE, u.EMAIL, u.ADDRESS, u.REMARK, u.LAST_LOGIN_DATE, u.LAST_LOGIN_IP,
+    u.CREATED_DATE, u.LAST_UPDATED_DATE, GET_REAL_NAME(u.CREATED_BY) AS CREATED_BY_NAME, GET_REAL_NAME(u.LAST_UPDATED_BY) AS LAST_UPDATED_BY_NAME
+      FROM SYS_USER u, SYS_ORG o WHERE u.ORG_ID = o.ORG_ID AND u.USER_ID > 0 AND u.DELETED = 0
+     <if test="username != null and username != ''">
+       AND INSTR(CONCAT(u.USERNAME, u.REAL_NAME), #{username,jdbcType=VARCHAR}) > 0
+     </if>
+     <choose>
+       <when test="containSub == true">
+         AND u.ORG_ID IN (SELECT ORG_ID FROM SYS_ORG WHERE FIND_IN_SET(ORG_ID, GET_ORG_CHILDREN(#{orgId,jdbcType=NUMERIC}))) 
+       </when>
+       <otherwise>
+         AND u.ORG_ID = #{orgId,jdbcType=NUMERIC}
+       </otherwise>
+     </choose>
+    ORDER BY u.LAST_UPDATED_DATE DESC, u.USER_ID DESC
+  </select>
+  
+  <update id="updateUserPic" parameterType="map">
+    UPDATE SYS_USER SET USER_PIC_SUFFIX = #{userPicSuffix,jdbcType=VARCHAR},USER_PIC_DATA = #{userPicData,jdbcType=BLOB} WHERE USER_ID = #{userId,jdbcType=NUMERIC}
+  </update>
+  
+  <update id="updateRealName" parameterType="map">
+    UPDATE SYS_USER SET REAL_NAME = #{realName,jdbcType=VARCHAR} WHERE USER_ID = #{userId,jdbcType=NUMERIC}
+  </update>
+  
+  <update id="updateAge" parameterType="map">
+    UPDATE SYS_USER SET AGE = #{age,jdbcType=NUMERIC} WHERE USER_ID = #{userId,jdbcType=NUMERIC}
+  </update>
+  
+  <update id="updateBirthday" parameterType="map">
+    UPDATE SYS_USER SET BIRTHDAY = #{birthday,jdbcType=TIMESTAMP} WHERE USER_ID = #{userId,jdbcType=NUMERIC}
+  </update>
+  
+  <update id="updateAbout" parameterType="map">
+    UPDATE SYS_USER SET ABOUT = #{about,jdbcType=VARBINARY} WHERE USER_ID = #{userId,jdbcType=NUMERIC}
+  </update>
+</mapper>

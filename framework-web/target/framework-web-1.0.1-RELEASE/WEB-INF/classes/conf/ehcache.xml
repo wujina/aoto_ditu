@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd"
+  updateCheck="false" monitoring="autodetect" dynamicConfig="true" name="mybatisEhcache">
+  <!--
+    <diskStore>元素：指定一个文件目录，当EHCache把数据写到硬盘上时，将把数据写到这个文件目录下。
+    备注: 持久化到硬盘的路径由虚拟机参数"java.io.tmpdir"决定.
+    System.out.println(System.getProperty("java.io.tmpdir"));
+
+    <defaultCache>元素：设定缓存的默认数据过期策略。
+
+    <cache>元素：设定具体的命名缓存的数据过期策略。
+
+    <cache>元素的属性
+
+    name：缓存名称。通常为缓存对象的类名（非严格标准）。
+
+    maxElementsInMemory：设置基于内存的缓存可存放对象的最大数目。
+
+    maxElementsOnDisk：设置基于硬盘的缓存可存放对象的最大数目。
+
+    eternal：如果为true，表示对象永远不会过期，此时会忽略timeToIdleSeconds和timeToLiveSeconds属性，默认为false;
+
+    timeToIdleSeconds： 设定允许对象处于空闲状态的最长时间，以秒为单位。当对象自从最近一次被访问后，如果处于空闲状态的时间超过了timeToIdleSeconds属性值，这个对象就会过期。当对象过期，EHCache将把它从缓存中清空。只有当eternal属性为false，该属性才有效。如果该属性值为0，则表示对象可以无限期地处于空闲状态。
+
+    timeToLiveSeconds：设定对象允许存在于缓存中的最长时间，以秒为单位。当对象自从被存放到缓存中后，如果处于缓存中的时间超过了 timeToLiveSeconds属性值，这个对象就会过期。当对象过期，EHCache将把它从缓存中清除。只有当eternal属性为false，该属性才有效。如果该属性值为0，则表示对象可以无限期地存在于缓存中。timeToLiveSeconds必须大于timeToIdleSeconds属性，才有意义。
+
+    overflowToDisk：如果为true,表示当基于内存的缓存中的对象数目达到了maxElementsInMemory界限后，会把益出的对象写到基于硬盘的缓存中。
+
+    diskPersistent：是否缓存虚拟机重启期数据
+    diskExpiryThreadIntervalSeconds：磁盘失效线程运行时间间隔，默认是120秒
+    diskSpoolBufferSizeMB：这个参数设置DiskStore（磁盘缓存）的缓存区大小。默认是30MB。每个Cache都应该有自己的一个缓冲区
+    memoryStoreEvictionPolicy：当达到maxElementsInMemory限制时，Ehcache将会根据指定的策略去清理内存。默认策略是LRU（最近最少使用）。你可以设置为FIFO（先进先出）或是LFU（较少使用）
+  -->
+  <diskStore path="java.io.tmpdir" />
+
+  <cache name="menuCache" eternal="false" overflowToDisk="false" timeToLiveSeconds="7200"
+    maxEntriesLocalHeap="0" maxEntriesLocalDisk="0" maxElementsInMemory="200" maxElementsOnDisk="200"
+    memoryStoreEvictionPolicy="LRU" />
+
+  <cache name="orgCache" eternal="false" overflowToDisk="false" timeToLiveSeconds="7200"
+    maxEntriesLocalHeap="0" maxEntriesLocalDisk="0" maxElementsInMemory="200" maxElementsOnDisk="200"
+    memoryStoreEvictionPolicy="LRU" />
+    
+  <cache name="dicCache" eternal="false" overflowToDisk="false" timeToLiveSeconds="7200"
+    maxEntriesLocalHeap="0" maxEntriesLocalDisk="0" maxElementsInMemory="200" maxElementsOnDisk="200"
+    memoryStoreEvictionPolicy="LRU" />
+
+  <cache name="permissionCache" eternal="false" overflowToDisk="false" timeToLiveSeconds="7200"
+    maxEntriesLocalHeap="0" maxEntriesLocalDisk="0" maxElementsInMemory="200" maxElementsOnDisk="200"
+    memoryStoreEvictionPolicy="LRU" />
+
+</ehcache>

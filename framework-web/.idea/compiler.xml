@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="framework-security" />
+        <module name="framework-web" />
+        <module name="framework-logging" />
+        <module name="framework-commons" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="framework-commons" target="1.8" />
+      <module name="framework-logging" target="1.8" />
+      <module name="framework-parent" target="1.5" />
+      <module name="framework-security" target="1.8" />
+      <module name="framework-web" target="1.8" />
+      <module name="framework-web (1)" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aoto.framework.security.persistence.inf.DicMapper">
+  <resultMap id="getDicsMap" type="map" >
+    <id column="DIC_ID" property="dicId" javaType="int" jdbcType="NUMERIC" />
+    <result column="DIC_NAME" property="dicName" javaType="String" jdbcType="VARCHAR" />
+    <result column="DIC_TYPE" property="dicType" javaType="String" jdbcType="VARCHAR" />
+    <result column="DIC_KEY" property="dicKey" javaType="String" jdbcType="VARCHAR" />
+    <result column="DIC_VALUE" property="dicValue" javaType="String" jdbcType="VARCHAR" />
+    <result column="DIC_SYMBOL" property="dicSymbol" javaType="String" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="getDicsByPageMap" type="map" >
+    <id column="DIC_ID" property="dicId" javaType="int" jdbcType="NUMERIC" />
+    <result column="DIC_NAME" property="dicName" javaType="String" jdbcType="VARCHAR" />
+    <result column="DIC_TYPE" property="dicType" javaType="String" jdbcType="VARCHAR" />
+    <result column="DIC_KEY" property="dicKey" javaType="String" jdbcType="VARCHAR" />
+    <result column="DIC_VALUE" property="dicValue" javaType="String" jdbcType="VARCHAR" />
+    <result column="DIC_SYMBOL" property="dicSymbol" javaType="String" jdbcType="VARCHAR" />
+    <result column="CREATED_BY" property="createdBy" javaType="int" jdbcType="NUMERIC" />
+    <result column="CREATED_DATE" property="createdDate" javaType="Date" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPDATED_BY_NAME" property="lastUpdatedByName" javaType="String" jdbcType="VARCHAR" />
+    <result column="LAST_UPDATED_DATE" property="lastUpdatedDate" javaType="Date" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+    <select id="getDicsByPage" parameterType="map" resultMap="getDicsByPageMap">
+    SELECT DISTINCT
+        DIC_NAME,
+        DIC_TYPE,
+        GET_REAL_NAME(LAST_UPDATED_BY) AS LAST_UPDATED_BY_NAME,
+        LAST_UPDATED_DATE
+    FROM SYS_DIC 
+    WHERE 1=1 
+    <if test="dicName != null and dicName != ''">
+       AND INSTR(DIC_NAME, #{dicName,jdbcType=VARCHAR}) > 0
+    </if>
+    <if test="dicType != null and dicType != ''">
+       AND INSTR(DIC_TYPE, #{dicType,jdbcType=VARCHAR}) > 0
+    </if>
+    ORDER BY DIC_TYPE ASC
+  </select>
+  
+  <select id="getDics" resultMap="getDicsMap">
+    SELECT DIC_ID,DIC_NAME, DIC_TYPE,DIC_KEY,DIC_VALUE,DIC_SYMBOL
+    FROM SYS_DIC 
+    ORDER BY LAST_UPDATED_DATE DESC, DIC_TYPE ,DIC_KEY ASC
+  </select>
+  <insert id="insertDic" parameterType="map">
+   INSERT INTO SYS_DIC (
+          DIC_ID,
+       DIC_NAME,
+       DIC_KEY,
+       DIC_VALUE,
+       DIC_SYMBOL,
+       CREATED_BY,
+       CREATED_DATE,
+       LAST_UPDATED_BY,
+       LAST_UPDATED_DATE,
+       DIC_TYPE) 
+   VALUES (#{dicId,jdbcType=NUMERIC},
+              #{dicName,jdbcType=VARCHAR},
+              #{dicKey,jdbcType=VARCHAR},
+             #{dicValue,jdbcType=VARCHAR},
+              #{dicSymbol,jdbcType=VARCHAR},
+              #{createdBy,jdbcType=NUMERIC},
+              #{createdDate,jdbcType=TIMESTAMP},
+              #{lastUpdatedBy,jdbcType=NUMERIC},
+              #{lastUpdatedDate,jdbcType=TIMESTAMP},
+              #{dicType,jdbcType=VARCHAR})
+  </insert>
+  
+   <select id="selectDicNumListDicTypeForInsert" parameterType="map" resultType="int">
+        SELECT COUNT(1) NUM FROM SYS_DIC WHERE DIC_TYPE = #{dicType,jdbcType=VARCHAR} 
+        AND DIC_ID not in (select s.DIC_ID from SYS_DIC s where s.DIC_TYPE = (select f.DIC_TYPE from SYS_DIC f where f.DIC_ID = #{dicId,jdbcType=NUMERIC}))
+   </select>
+   
+   <select id="selectDicNumListDicNameForInsert" parameterType="map" resultType="int">
+        SELECT COUNT(1) NUM FROM SYS_DIC WHERE DIC_NAME = #{dicName,jdbcType=VARCHAR} 
+        AND DIC_ID not in (select s.DIC_ID from SYS_DIC s where s.DIC_TYPE = (select f.DIC_TYPE from SYS_DIC f where f.DIC_ID = #{dicId,jdbcType=NUMERIC}))
+   </select>
+  
+   <select id="getDicByDicTypeByPage" parameterType="map" resultMap="getDicsByPageMap">
+    SELECT 
+        DIC_ID,
+        DIC_NAME,
+        DIC_KEY,
+        DIC_VALUE,
+        DIC_SYMBOL,
+        CREATED_BY,
+        CREATED_DATE,
+        LAST_UPDATED_BY,
+        LAST_UPDATED_DATE,
+        DIC_TYPE
+    FROM SYS_DIC 
+    WHERE DIC_TYPE=#{dicType,jdbcType=VARCHAR}
+    <if test="dicKey != null and dicKey != ''">
+       AND INSTR(DIC_KEY, #{dicKey,jdbcType=VARCHAR}) > 0
+    </if>
+    <if test="dicValue != null and dicValue != ''">
+       AND INSTR(DIC_VALUE, #{dicValue,jdbcType=VARCHAR}) > 0
+    </if>
+    <if test="dicSymbol != null and dicSymbol != ''">
+       AND INSTR(DIC_SYMBOL, #{dicSymbol,jdbcType=VARCHAR}) > 0
+    </if>
+    ORDER BY LAST_UPDATED_DATE DESC, DIC_KEY ASC
+  </select>
+  
+  <select id="getDicByDicType" parameterType="map" resultMap="getDicsByPageMap">
+    SELECT 
+        DIC_ID,
+        DIC_NAME,
+        DIC_KEY,
+        DIC_VALUE,
+        DIC_SYMBOL,
+        CREATED_BY,
+        CREATED_DATE,
+        LAST_UPDATED_BY,
+        LAST_UPDATED_DATE,
+        DIC_TYPE
+    FROM SYS_DIC 
+    WHERE DIC_TYPE=#{dicType,jdbcType=VARCHAR}
+    <if test="dicKey != null and dicKey != ''">
+       AND INSTR(DIC_KEY, #{dicKey,jdbcType=VARCHAR}) > 0
+    </if>
+    <if test="dicValue != null and dicValue != ''">
+       AND INSTR(DIC_VALUE, #{dicValue,jdbcType=VARCHAR}) > 0
+    </if>
+    <if test="dicSymbol != null and dicSymbol != ''">
+       AND INSTR(DIC_SYMBOL, #{dicSymbol,jdbcType=VARCHAR}) > 0
+    </if>
+    ORDER BY LAST_UPDATED_DATE DESC, DIC_KEY ASC
+  </select>
+  
+  <delete id="deleteDic" parameterType="map">
+    DELETE FROM SYS_DIC WHERE DIC_ID = #{dicId,jdbcType=NUMERIC}
+  </delete>
+  
+  <update id="updateDic" parameterType="map">
+     UPDATE SYS_DIC SET 
+        DIC_NAME = #{dicName,jdbcType=VARCHAR},
+        DIC_TYPE = #{dicType,jdbcType=VARCHAR},
+        DIC_KEY = #{dicKey,jdbcType=VARCHAR},
+        DIC_VALUE = #{dicValue,jdbcType=VARCHAR},
+        DIC_SYMBOL = #{dicSymbol,jdbcType=VARCHAR},
+        LAST_UPDATED_BY = #{lastUpdatedBy,jdbcType=NUMERIC}, 
+        LAST_UPDATED_DATE = #{lastUpdatedDate,jdbcType=TIMESTAMP}
+      WHERE DIC_ID = #{dicId,jdbcType=NUMERIC}
+  </update>
+  
+  <delete id="deleteDicByDicType" parameterType="String">
+    DELETE FROM SYS_DIC  WHERE DIC_TYPE = #{dicType,jdbcType=VARCHAR}
+  </delete>
+  
+</mapper>

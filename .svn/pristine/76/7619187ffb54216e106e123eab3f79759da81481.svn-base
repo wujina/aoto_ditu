@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aoto.framework.security.persistence.inf.UrlMapper">
+  <resultMap type="map" id="selectUrlsByFunIdMap">
+    <id column="URL_ID" property="urlId" javaType="int" jdbcType="NUMERIC" />
+    <id column="FUN_ID" property="funId" javaType="int" jdbcType="NUMERIC" />
+    <result column="URL_NAME" property="urlName" javaType="String" jdbcType="VARCHAR" />
+    <result column="FUN_NAME" property="funName" javaType="String" jdbcType="VARCHAR" />
+    <result column="URL_PATTERN" property="urlPattern" javaType="String" jdbcType="VARCHAR" />
+    <result column="HTTP_METHOD" property="httpMethod" javaType="String" jdbcType="VARCHAR" />
+    <result column="ACTION_CODE" property="actionCode" javaType="String" jdbcType="VARCHAR" />
+    <result column="ARGS_CODE" property="argsCode" javaType="String" jdbcType="VARCHAR" />
+    <result column="LOGGED_DATA_CHANGED" property="loggedDataChanged" javaType="boolean" jdbcType="NUMERIC" />
+  </resultMap>
+
+  <resultMap type="map" id="selectUrlsByMethodMap">
+    <id column="ROLE_ID" property="roleId" javaType="int" jdbcType="NUMERIC" />
+    <id column="URL_ID" property="urlId" javaType="int" jdbcType="NUMERIC" />
+    <result column="URL_NAME" property="urlName" javaType="String" jdbcType="VARCHAR" />
+    <result column="URL_PATTERN" property="urlPattern" javaType="String" jdbcType="VARCHAR" />
+    <result column="HTTP_METHOD" property="httpMethod" javaType="String" jdbcType="VARCHAR" />
+    <result column="ACTION_CODE" property="actionCode" javaType="String" jdbcType="VARCHAR" />
+    <result column="ARGS_CODE" property="argsCode" javaType="String" jdbcType="VARCHAR" />
+    <result column="LOGGED_DATA_CHANGED" property="loggedDataChanged" javaType="boolean" jdbcType="NUMERIC" />
+  </resultMap>
+
+  <resultMap id="selectUrlByPageMap" type="map">
+    <id column="URL_ID" property="urlId" javaType="int" jdbcType="NUMERIC" />
+    <result column="URL_NAME" property="urlName" javaType="String" jdbcType="VARCHAR" />
+    <result column="URL_PATTERN" property="urlPattern" javaType="String" jdbcType="VARCHAR" />
+    <result column="HTTP_METHOD" property="httpMethod" javaType="String" jdbcType="VARCHAR" />
+    <result column="ACTION_CODE" property="actionCode" javaType="String" jdbcType="VARCHAR" />
+    <result column="ARGS_CODE" property="argsCode" javaType="String" jdbcType="VARCHAR" />
+    <result column="LOGGED_DATA_CHANGED" property="loggedDataChanged" javaType="int" jdbcType="NUMERIC" />
+    <result column="LAST_UPDATED_DATE" property="lastUpdatedDate" javaType="Date" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPDATED_BY_NAME" property="lastUpdatedByName" javaType="String" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="selectUrlsByFunId" parameterType="int" resultMap="selectUrlsByFunIdMap">
+    select u.URL_ID,u.URL_NAME,u.URL_PATTERN,u.HTTP_METHOD,u.ACTION_CODE,u.ARGS_CODE,u.LOGGED_DATA_CHANGED from SYS_FUN_URL f, SYS_URL
+    u where u.URL_ID = f.URL_ID and f.FUN_ID = #{funId,jdbcType=NUMERIC}
+  </select>
+
+  <select id="selectUrlsByMethod" parameterType="String" resultMap="selectUrlsByMethodMap">
+    select r.role_id, l.url_id, l.url_name, l.url_pattern,
+    l.http_method, l.action_code, l.args_code, l.logged_data_changed from sys_fun_url f, sys_role_fun r, sys_url l WHERE
+    f.fun_id = r.fun_id AND f.url_id = l.url_id AND l.http_method = #{method,jdbcType=VARCHAR} ORDER BY l.url_pattern DESC
+  </select>
+
+  <select id="selectUrlsExceptByPage" parameterType="map" resultMap="selectUrlByPageMap">
+    SELECT u.URL_ID,u.URL_NAME,u.URL_PATTERN,u.HTTP_METHOD,u.ACTION_CODE,u.ARGS_CODE,u.LOGGED_DATA_CHANGED FROM SYS_URL u WHERE 1=1
+    <if test="excepted != null and excepted != ''">
+      AND NOT EXISTS (SELECT a.URL_ID FROM SYS_URL a WHERE u.URL_ID = a.URL_ID AND a.URL_ID IN (${excepted}))
+    </if>
+    <if test="urlName != null and urlName != ''">
+      AND INSTR(u.URL_NAME, #{urlName,jdbcType=VARCHAR}) > 0
+    </if>
+    ORDER BY u.LAST_UPDATED_DATE DESC, u.URL_ID DESC
+  </select>
+
+  <insert id="insertUrl" parameterType="map">
+    INSERT INTO SYS_URL (URL_ID,URL_NAME,URL_PATTERN,HTTP_METHOD,ACTION_CODE,ARGS_CODE,LOGGED_DATA_CHANGED,CREATED_BY, CREATED_DATE,
+    LAST_UPDATED_BY, LAST_UPDATED_DATE)
+    VALUES (
+     #{urlId,jdbcType=NUMERIC},
+    #{urlName,jdbcType=VARCHAR},
+    #{urlPattern,jdbcType=VARCHAR},
+    #{httpMethod,jdbcType=VARCHAR},
+    #{actionCode,jdbcType=VARCHAR},
+    #{argsCode,jdbcType=VARCHAR},
+    #{loggedDataChanged,jdbcType=NUMERIC},#{createdBy,jdbcType=NUMERIC},
+    #{createdDate,jdbcType=TIMESTAMP},#{lastUpdatedBy,jdbcType=NUMERIC}, #{lastUpdatedDate,jdbcType=TIMESTAMP})
+  </insert>
+  
+  <select id="selectCountName" parameterType="map" resultType="int">
+    SELECT COUNT(1) FROM SYS_URL where URL_NAME = #{urlName,jdbcType=VARCHAR}
+    <if test="urlId > 0">
+      AND URL_ID != #{urlId,jdbcType=NUMERIC}
+    </if>
+  </select>
+  
+  <select id="selectUrlByPage" parameterType="map" resultMap="selectUrlByPageMap">
+    SELECT URL_ID,URL_NAME,URL_PATTERN,HTTP_METHOD,ACTION_CODE,ARGS_CODE,LOGGED_DATA_CHANGED,
+    GET_REAL_NAME(LAST_UPDATED_BY) AS LAST_UPDATED_BY_NAME,LAST_UPDATED_DATE
+    FROM SYS_URL WHERE 1=1
+    <if test="urlName != null and urlName != ''">
+      AND INSTR(URL_NAME, #{urlName,jdbcType=VARCHAR}) > 0
+    </if>
+    ORDER BY LAST_UPDATED_DATE DESC, URL_ID DESC
+  </select>
+  
+  <update id="updateUrl" parameterType="map">
+    UPDATE SYS_URL SET
+    URL_NAME = #{urlName,jdbcType=VARCHAR},
+    URL_PATTERN = #{urlPattern,jdbcType=VARCHAR},
+    HTTP_METHOD = #{httpMethod,jdbcType=VARCHAR},
+    ACTION_CODE = #{actionCode,jdbcType=VARCHAR},
+    ARGS_CODE = #{argsCode,jdbcType=VARCHAR},
+    LOGGED_DATA_CHANGED = #{loggedDataChanged,jdbcType=NUMERIC},LAST_UPDATED_BY = #{lastUpdatedBy,jdbcType=NUMERIC}, LAST_UPDATED_DATE =
+    #{lastUpdatedDate,jdbcType=TIMESTAMP}
+    WHERE URL_ID = #{urlId,jdbcType=NUMERIC}
+  </update>
+  
+  <delete id="deleteUrl" parameterType="map">
+    DELETE FROM SYS_URL WHERE URL_ID = #{urlId,jdbcType=NUMERIC}
+  </delete>
+
+</mapper>

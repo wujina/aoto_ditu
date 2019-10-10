@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="7.8.1">
+<file name="C:\Users\admin\Desktop\newaoto\framework-commons\src\main\java\com\aoto\framework\commons\beans\Entity.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-commons\src\main\java\com\aoto\framework\commons\beans\JsonResult.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-commons\src\main\java\com\aoto\framework\commons\beans\JsonUtils.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-commons\src\main\java\com\aoto\framework\commons\beans\Model.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-commons\src\main\java\com\aoto\framework\commons\constant\AccessTypeEnum.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-commons\src\main\java\com\aoto\framework\commons\constant\BeanProperty.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-commons\src\main\java\com\aoto\framework\commons\constant\Constants.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-commons\src\main\java\com\aoto\framework\commons\constant\DBTypeEnum.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-commons\src\main\java\com\aoto\framework\commons\constant\ErrorCodeEnum.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-commons\src\main\java\com\aoto\framework\commons\constant\ExpiryPolicyEnum.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-commons\src\main\java\com\aoto\framework\commons\constant\FrameworkCacheType.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-commons\src\main\java\com\aoto\framework\commons\constant\NumberEnum.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-commons\src\main\java\com\aoto\framework\commons\constant\RoleTypeEnum.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-commons\src\main\java\com\aoto\framework\commons\lang\StringUtils4Aoto.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-commons\src\main\java\com\aoto\framework\commons\pagination\PaginationQuery.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-commons\src\main\java\com\aoto\framework\commons\pagination\PagingCriteria.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-commons\src\main\java\com\aoto\framework\commons\pagination\SortDirection.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-commons\src\main\java\com\aoto\framework\commons\userdetails\CurrentUser.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-commons\src\main\java\com\aoto\framework\commons\userdetails\CurrentUserHolder.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-commons\src\main\java\com\aoto\framework\commons\util\BitConverter.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-commons\src\main\java\com\aoto\framework\commons\util\ExcelUtils.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-commons\src\main\java\com\aoto\framework\commons\util\matcher\AntPathRequestMatcher.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-commons\src\main\java\com\aoto\framework\commons\util\matcher\RegexRequestMatcher.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-commons\src\main\java\com\aoto\framework\commons\util\ZipUtils.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-commons\src\main\java\com\aoto\framework\exception\ApplicationException.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-commons\src\main\java\com\aoto\framework\exception\BusinessException.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-commons\src\main\java\com\aoto\framework\ignite\CacheFacade.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-commons\src\main\java\com\aoto\framework\ignite\CacheFactory.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-commons\src\main\java\com\aoto\framework\mybatis\pagination\dialect\Dialect.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-commons\src\main\java\com\aoto\framework\mybatis\pagination\dialect\MysqlDialect.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-commons\src\main\java\com\aoto\framework\mybatis\pagination\dialect\OracleDialect.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-commons\src\main\java\com\aoto\framework\mybatis\pagination\PagingCriteriaFinder.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-commons\src\main\java\com\aoto\framework\mybatis\pagination\PagingInterceptor.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-commons\src\main\java\com\aoto\framework\mybatis\UpdateInterceptor.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-commons\src\main\java\com\aoto\framework\rest\HttpClientFactory.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-commons\src\main\java\com\aoto\framework\spring\SpringContextHolder.java">
+</file>
+<file name="C:\Users\admin\Desktop\newaoto\framework-commons\src\main\java\com\aoto\framework\web\ExceptionHandler.java">
+</file>
+</checkstyle>
