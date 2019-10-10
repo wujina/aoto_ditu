@@ -23,6 +23,7 @@ import com.aoto.framework.security.service.inf.CitycoordinatesService;
 import com.aoto.framework.security.service.inf.RoomInfoService;
 import com.aoto.framework.security.service.inf.UserLogService;
 import com.aoto.framework.security.service.inf.UserService;
+import com.aoto.framework.security.web.Util.ServerUtil;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.http.HttpRequest;
@@ -116,20 +117,20 @@ public class RoomInfoController {
     @RequestMapping(value = "/system/roominfo/list", method = RequestMethod.GET, produces = {"application/json"})
     @ResponseBody
     public JsonResult getUrls(RoominfoQuery model,HttpServletRequest request) throws UnsupportedEncodingException {
-
-        if(model.getAdministrativeArea()!=null&&model.getAdministrativeArea()!=""){
-            model.setAdministrativeArea(new String(model.getAdministrativeArea().trim().getBytes("ISO-8859-1"), "UTF-8"));
+        if( ServerUtil.isTomcat()){//tomcat server
+            if(model.getAdministrativeArea()!=null&&model.getAdministrativeArea()!=""){
+                model.setAdministrativeArea(new String(model.getAdministrativeArea().trim().getBytes("ISO-8859-1"), "UTF-8"));
+            }
+            if(model.getRoomName()!=null&&model.getRoomName()!=""){
+                model.setRoomName(new String(model.getRoomName().trim().getBytes("ISO-8859-1"), "UTF-8"));
+            }
+            if(model.getRoomType()!=null&&model.getRoomType()!=""){
+                model.setRoomType(new String(model.getRoomType().trim().getBytes("ISO-8859-1"), "UTF-8"));
+            }
+            if(model.getRoomStatus()!=null&&model.getRoomStatus()!=""){
+                model.setRoomStatus(new String(model.getRoomStatus().trim().getBytes("ISO-8859-1"), "UTF-8"));
+            }
         }
-        if(model.getRoomName()!=null&&model.getRoomName()!=""){
-            model.setRoomName(new String(model.getRoomName().trim().getBytes("ISO-8859-1"), "UTF-8"));
-        }
-        if(model.getRoomType()!=null&&model.getRoomType()!=""){
-            model.setRoomType(new String(model.getRoomType().trim().getBytes("ISO-8859-1"), "UTF-8"));
-        }
-        if(model.getRoomStatus()!=null&&model.getRoomStatus()!=""){
-            model.setRoomStatus(new String(model.getRoomStatus().trim().getBytes("ISO-8859-1"), "UTF-8"));
-        }
-
         PagingCriteria pagingCriteria = new PagingCriteria(model.getPage() - 1, model.getRows(), model.getSort(),
                 model.getOrder());
         List<Map<String, Object>> list = roomInfoService.getUrlByPage(pagingCriteria, model,request);

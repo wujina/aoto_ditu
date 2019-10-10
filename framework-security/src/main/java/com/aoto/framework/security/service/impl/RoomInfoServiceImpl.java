@@ -1020,9 +1020,7 @@ public class RoomInfoServiceImpl implements RoomInfoService {
         if(map.get("roomStatus").equals("已通过")){
             return "审核通过";
         }
-
         return "审核不通过";
-
 
     }
 
