@@ -9,11 +9,6 @@
     </properties>
     <root id="archive" name="framework.war">
       <element id="artifact" artifact-name="framework-web:war exploded" />
-      <element id="directory" name="WEB-INF">
-        <element id="directory" name="lib">
-          <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.1.1" />
-        </element>
-      </element>
     </root>
   </artifact>
 </component>

@@ -13,6 +13,8 @@ import com.aoto.framework.security.persistence.inf.LabelMapper;
 import com.aoto.framework.security.persistence.inf.RoomInfoMapper;
 import com.aoto.framework.security.persistence.inf.UserMapper;
 import com.aoto.framework.security.service.inf.RoomInfoService;
+import com.aoto.framework.security.web.Util.FtpJSch;
+import com.jcraft.jsch.SftpException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -793,7 +795,7 @@ public class RoomInfoServiceImpl implements RoomInfoService {
     }
 
     @Override
-    public String newRoomInfo(RoomInfoNewModel model,HttpServletRequest request,HttpSession session) throws IOException{
+    public String newRoomInfo(RoomInfoNewModel model,HttpServletRequest request,HttpSession session) throws IOException, SftpException {
         String regEx = "[ `~!@#$%^&*+=|{}':;',\\[\\].<>/?~！@#￥%……&*——+|{}【】‘；：”“’。，、？]|\n|\r|\t";
         Pattern p = Pattern.compile(regEx);
         if( p.matcher(model.getRoomName()).find()){
@@ -926,6 +928,12 @@ public class RoomInfoServiceImpl implements RoomInfoService {
                 Images += tempImg;
                 // 保存文件
                 String urlUpload=urlImg+'\\'+model11.getRoomID();
+                FtpJSch ftpJSch=new FtpJSch();
+                ftpJSch.getConnect();
+                ftpJSch.upload(filex,"/var/www/images/904");
+//                ftpJSch.deletedir("/var/www/images/904/");
+                //ftpJSch.upload(file,"/var/www/images/904/");
+                ftpJSch.closeFptConnect();
 
                 saveFile(urlImg, filex, model11.getRoomID());
             }

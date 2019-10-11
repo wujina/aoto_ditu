@@ -24,6 +24,7 @@ import com.aoto.framework.security.service.inf.RoomInfoService;
 import com.aoto.framework.security.service.inf.UserLogService;
 import com.aoto.framework.security.service.inf.UserService;
 import com.aoto.framework.security.web.Util.ServerUtil;
+import com.jcraft.jsch.SftpException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.http.HttpRequest;
@@ -240,7 +241,7 @@ public class RoomInfoController {
     @ResponseBody
     public ResponseEntity<Map<String, Object>>newRoominfo(RoomInfoNewModel infomodel,
                                           HttpServletRequest request,HttpSession session
-                                                          ) throws IOException{
+                                                          ) throws IOException, SftpException {
         Map<String, Object> map = new HashMap<String, Object>();
         String errorCode=roomInfoService.newRoomInfo(infomodel,request,session);
         if (errorCode != null)

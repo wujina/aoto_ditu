@@ -4,6 +4,7 @@ import com.aoto.framework.commons.pagination.PagingCriteria;
 import com.aoto.framework.security.DTO.RoomInfoDTO;
 import com.aoto.framework.security.DTO.TotalDTO;
 import com.aoto.framework.security.models.*;
+import com.jcraft.jsch.SftpException;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -59,7 +60,7 @@ public interface RoomInfoService {
 
     List<String>administrativeAreaAll(HttpServletRequest request);
 
-    String newRoomInfo(RoomInfoNewModel model, HttpServletRequest request, HttpSession session) throws IOException;
+    String newRoomInfo(RoomInfoNewModel model, HttpServletRequest request, HttpSession session) throws IOException, SftpException;
 
     String editAudit(RoomInfoModel model);
 
