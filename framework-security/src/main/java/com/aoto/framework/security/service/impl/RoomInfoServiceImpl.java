@@ -31,9 +31,11 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.awt.*;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.util.*;
+import java.util.List;
 import java.util.regex.Pattern;
 
 
@@ -604,6 +606,9 @@ public class RoomInfoServiceImpl implements RoomInfoService {
         else{
             Qrcode=(String) roominfo.get(RoomInfo.QRCODE);
         }
+        if(Images.startsWith(",")){
+            Images=Images.substring(1);
+        }
             map.put(RoomInfo.ROOM_ID,model.getRoomID());
             map.put(RoomInfo.ROOM_NAME,model.getRoomName());
             map.put(RoomInfo.COMMUNITY,model.getCommunity());
@@ -927,13 +932,13 @@ public class RoomInfoServiceImpl implements RoomInfoService {
                 String tempImg = fileMap.get("file1_new").get(i).getOriginalFilename() + ",";
                 Images += tempImg;
                 // 保存文件
-                String urlUpload=urlImg+'\\'+model11.getRoomID();
-                FtpJSch ftpJSch=new FtpJSch();
-                ftpJSch.getConnect();
-                ftpJSch.upload(filex,"/var/www/images/904");
-//                ftpJSch.deletedir("/var/www/images/904/");
-                //ftpJSch.upload(file,"/var/www/images/904/");
-                ftpJSch.closeFptConnect();
+//                String urlUpload=urlImg+'\\'+model11.getRoomID();
+//                FtpJSch ftpJSch=new FtpJSch();
+//                ftpJSch.getConnect();
+//                ftpJSch.upload(filex,"/var/www/images/904");
+//              ftpJSch.deletedir("/var/www/images/904/");
+//                //ftpJSch.upload(file,"/var/www/images/904/");
+//                ftpJSch.closeFptConnect();
 
                 saveFile(urlImg, filex, model11.getRoomID());
             }

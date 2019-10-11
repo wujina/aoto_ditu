@@ -2,43 +2,14 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="framework-web:war exploded" />
+      <artifact name="framework-web:war" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1e9e84c9-635b-476e-a1d2-f159aecfd36c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_jcraft_jsch_0_1_51.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_jcraft_jsch_0_1_55.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_jcraft_jzlib_1_0_7.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../framework-security/framework-security.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../framework-security/framework-security.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../framework-security/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../framework-security/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../framework-security/src/main/java/com/aoto/framework/security/service/impl/RoomInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../framework-security/src/main/java/com/aoto/framework/security/service/impl/RoomInfoServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../framework-security/src/main/java/com/aoto/framework/security/service/inf/RoomInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../framework-security/src/main/java/com/aoto/framework/security/service/inf/RoomInfoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../framework-security/src/main/java/com/aoto/framework/security/web/controllers/RoomInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../framework-security/src/main/java/com/aoto/framework/security/web/controllers/RoomInfoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/framework_web_war.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/framework_web_war.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/framework_web_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/framework_web_war_exploded.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/framework-web.iml" beforeDir="false" afterPath="$PROJECT_DIR$/framework-web.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/conf/paramters.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/conf/paramters.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/conf/proxool.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/conf/proxool.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/checkstyle-checker.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/checkstyle-result.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/framework-web-1.0.1-RELEASE-sources.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/framework-web-1.0.1-RELEASE-sources.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/framework-web-1.0.1-RELEASE/WEB-INF/lib/commons-logging-1.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/framework-web-1.0.1-RELEASE/WEB-INF/lib/framework-commons-1.0.1-RELEASE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/framework-web-1.0.1-RELEASE/WEB-INF/lib/framework-commons-1.0.1-RELEASE.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/framework-web-1.0.1-RELEASE/WEB-INF/lib/framework-logging-1.0.1-RELEASE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/framework-web-1.0.1-RELEASE/WEB-INF/lib/framework-logging-1.0.1-RELEASE.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/framework-web-1.0.1-RELEASE/WEB-INF/lib/framework-security-1.0.1-RELEASE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/framework-web-1.0.1-RELEASE/WEB-INF/lib/framework-security-1.0.1-RELEASE.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/framework.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/framework.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/java-basic.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/java-empty.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/java-imports.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/java-unnecessary.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/java-unusedcode.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/pmd.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/site/findbugsXml.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/framework.war" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -89,7 +60,29 @@
     <favorites_list name="framework-web" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../framework-security/src/main/java/com/aoto/framework/security/service/impl/RoomInfoServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="611" column="39" lean-forward="true" selection-start-line="611" selection-start-column="39" selection-end-line="611" selection-end-column="39" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/roominfo/edit.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-4623">
+              <caret line="615" column="46" selection-start-line="615" selection-start-column="34" selection-end-line="615" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -239,6 +232,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -366,12 +361,48 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="framework-web" type="b2602c69:ProjectViewProjectNode" />
+              <item name="framework-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="framework-web" type="b2602c69:ProjectViewProjectNode" />
+              <item name="framework-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="framework-web" type="b2602c69:ProjectViewProjectNode" />
+              <item name="framework-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="system" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="framework-web" type="b2602c69:ProjectViewProjectNode" />
+              <item name="framework-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="system" type="462c0819:PsiDirectoryNode" />
+              <item name="roominfo" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -379,7 +410,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../framework-security/src/main/java/com/aoto/framework/security/web/Util" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -744,11 +775,13 @@
       <workItem from="1570679559443" duration="1615000" />
       <workItem from="1570682248646" duration="7839000" />
       <workItem from="1570755887533" duration="6584000" />
+      <workItem from="1570773589980" duration="467000" />
+      <workItem from="1570786439058" duration="2900000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="657583000" />
+    <option name="totallyTimeSpent" value="660950000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -761,8 +794,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4730077" visible="true" weight="0.22319035" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4730077" visible="true" weight="0.24061662" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="JRebel" order="3" sideWeight="0.52699226" side_tool="true" weight="0.22319035" />
@@ -774,7 +808,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32978722" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49396783" weight="0.4490085" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49262735" weight="0.43342775" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49262735" visible="true" weight="0.49150142" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3281471" />
@@ -814,19 +848,19 @@
       <breakpoints>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/../framework-security/src/main/java/com/aoto/framework/security/service/impl/RoomInfoServiceImpl.java</url>
-          <line>441</line>
+          <line>443</line>
           <properties />
           <option name="timeStamp" value="54" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/../framework-security/src/main/java/com/aoto/framework/security/service/impl/RoomInfoServiceImpl.java</url>
-          <line>142</line>
+          <line>144</line>
           <properties />
           <option name="timeStamp" value="140" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/../framework-security/src/main/java/com/aoto/framework/security/service/impl/RoomInfoServiceImpl.java</url>
-          <line>480</line>
+          <line>482</line>
           <properties />
           <option name="timeStamp" value="194" />
         </line-breakpoint>
@@ -853,12 +887,6 @@
           <line>395</line>
           <properties />
           <option name="timeStamp" value="232" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/../framework-security/src/main/java/com/aoto/framework/security/service/impl/RoomInfoServiceImpl.java</url>
-          <line>929</line>
-          <properties />
-          <option name="timeStamp" value="234" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -1184,13 +1212,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/roominfo/edit.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1330">
-          <caret line="615" column="46" selection-start-line="615" selection-start-column="34" selection-end-line="615" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/roomaudit/edit.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="178">
@@ -1307,23 +1328,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../framework-security/src/main/java/com/aoto/framework/security/web/controllers/RoomInfoController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="245" column="44" lean-forward="true" selection-start-line="245" selection-start-column="44" selection-end-line="245" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/conf/proxool.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../framework-security/src/main/java/com/aoto/framework/security/web/Util/FtpJSch.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="248">
@@ -1334,10 +1338,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../framework-security/src/main/java/com/aoto/framework/security/service/impl/RoomInfoServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/../framework-security/src/main/java/com/aoto/framework/security/web/controllers/RoomInfoController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="935" selection-start-line="935" selection-end-line="935" />
+        <state relative-caret-position="-738">
+          <caret line="248" column="38" lean-forward="true" selection-start-line="248" selection-start-column="38" selection-end-line="248" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1348,6 +1352,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/conf/proxool.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/roominfo/edit.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4623">
+          <caret line="615" column="46" selection-start-line="615" selection-start-column="34" selection-end-line="615" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../framework-security/src/main/java/com/aoto/framework/security/service/impl/RoomInfoServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="611" column="39" lean-forward="true" selection-start-line="611" selection-start-column="39" selection-end-line="611" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
