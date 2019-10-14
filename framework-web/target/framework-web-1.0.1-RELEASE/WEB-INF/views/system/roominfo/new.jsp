@@ -512,11 +512,11 @@
         AMap.event.addListener(placeSearch, "markerClick", function(e){
                  console.log(e);
                 var address=e.data.pname+e.data.cityname+e.data.adname+e.data.address+e.data.name;
-                 var adminstra=e.data.cityname+e.data.adname;
-                 console.log(adminstra);
+
+                 console.log(e.data.adname);
                 document.getElementById("roomName_new").value = e.data.name;
                 document.getElementById("address_new").value = address;
-                document.getElementById("administrativeArea_new").value = adminstra;
+                document.getElementById("administrativeArea_new").value = e.data.adname;
                 document.getElementById("roomLongitude_new").value = e.data.location.lng;
                 document.getElementById("roomDimension_new").value = e.data.location.lat;
 

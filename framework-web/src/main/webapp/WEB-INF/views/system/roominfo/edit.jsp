@@ -506,10 +506,10 @@
         AMap.event.addListener(placeSearch, "markerClick", function(e){
             console.log(e);
             var address=e.data.pname+e.data.cityname+e.data.adname+e.data.address+e.data.name;
-            var adminstra=e.data.cityname+e.data.adname;
+
             document.getElementById("roomName_edit").value = e.data.name;
             document.getElementById("address_edit").value = address;
-            document.getElementById("administrativeArea_edit").value = adminstra;
+            document.getElementById("administrativeArea_edit").value = e.data.adname;
             document.getElementById("roomLongitude_edit").value = e.data.location.lng;
             document.getElementById("roomDimension_edit").value = e.data.location.lat;
             }

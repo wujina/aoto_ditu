@@ -353,8 +353,8 @@ public class RoomInfoController {
             roomInfoMap.put("code","404");
             return new ResponseEntity<Map<String, Object>>(roomInfoMap,HttpStatus.NOT_FOUND);
         }
-        if(dto.getLimit()==0||dto.getTotal()==0){
-            roomInfoMap.put("msg","Limit和Total不能为0");
+        if(dto.getTotal()==0){
+            roomInfoMap.put("msg","Total不能为0");
             roomInfoMap.put("code","404");
             return new ResponseEntity<Map<String, Object>>(roomInfoMap,HttpStatus.NOT_FOUND);
         }
