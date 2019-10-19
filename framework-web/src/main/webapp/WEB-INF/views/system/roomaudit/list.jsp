@@ -125,7 +125,7 @@
         else {
             var format=value.substring(value.length-3);
             console.log(format);
-            if(format==1){
+            if(format==1||format==null||format==0){
                 url += '<input style="height: 60px;width: 0px;border: none;">'
             }
             var format_temp=format.toLocaleLowerCase();

@@ -7,17 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1e9e84c9-635b-476e-a1d2-f159aecfd36c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../framework-security/src/main/java/com/aoto/framework/security/web/controllers/RoomInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../framework-security/src/main/java/com/aoto/framework/security/web/controllers/RoomInfoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../framework-security/target/classes/com/aoto/framework/security/web/controllers/RoomInfoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../framework-security/target/classes/com/aoto/framework/security/web/controllers/RoomInfoController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/conf/proxool.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/conf/proxool.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/roominfo/edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/roominfo/edit.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/roominfo/new.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/roominfo/new.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/conf/proxool.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/conf/proxool.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/framework-web-1.0.1-RELEASE/WEB-INF/classes/conf/proxool.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/framework-web-1.0.1-RELEASE/WEB-INF/classes/conf/proxool.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/framework-web-1.0.1-RELEASE/WEB-INF/lib/framework-security-1.0.1-RELEASE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/framework-web-1.0.1-RELEASE/WEB-INF/lib/framework-security-1.0.1-RELEASE.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/framework-web-1.0.1-RELEASE/WEB-INF/views/system/roominfo/edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/framework-web-1.0.1-RELEASE/WEB-INF/views/system/roominfo/edit.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/framework-web-1.0.1-RELEASE/WEB-INF/views/system/roominfo/new.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/framework-web-1.0.1-RELEASE/WEB-INF/views/system/roominfo/new.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/roomaudit/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/roomaudit/list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/framework-web-1.0.1-RELEASE/WEB-INF/views/system/roomaudit/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/framework-web-1.0.1-RELEASE/WEB-INF/views/system/roomaudit/list.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/framework.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/framework.war" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
@@ -71,21 +63,9 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../framework-security/src/main/java/com/aoto/framework/security/service/impl/RoomInfoServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18658">
-              <caret line="1025" column="60" selection-start-line="1025" selection-start-column="60" selection-end-line="1025" selection-end-column="60" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/roominfo/edit.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
+            <state relative-caret-position="9652">
               <caret line="508" selection-start-line="508" selection-end-line="508" />
             </state>
           </provider>
@@ -109,36 +89,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../framework-security/src/main/java/com/aoto/framework/security/web/controllers/RoomInfoController.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/roomaudit/list.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6118">
-              <caret line="383" selection-start-line="383" selection-end-line="383" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="316">
+              <caret line="127" column="49" selection-start-line="127" selection-start-column="49" selection-end-line="127" selection-end-column="49" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/conf/proxool.properties">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/roominfo/list.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../framework-security/src/main/java/com/aoto/framework/security/DTO/TotalDTO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="12" column="28" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="28" />
-              <folding>
-                <element signature="e#479#480#0" expanded="true" />
-                <element signature="e#511#512#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="4313">
+              <caret line="227" column="49" selection-start-line="227" selection-start-column="24" selection-end-line="227" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -238,7 +202,6 @@
         <option value="$PROJECT_DIR$/../framework-security/src/main/java/com/aoto/framework/security/service/inf/RoomInfoService.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/roominfo/list.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/roominfo/show.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/roomaudit/list.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/js/system/roominfo/list.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/roominfo/import.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/roomaudit/edit.jsp" />
@@ -254,6 +217,7 @@
         <option value="$PROJECT_DIR$/../framework-security/src/main/java/com/aoto/framework/security/web/controllers/RoomInfoController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/roominfo/new.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/roominfo/edit.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/roomaudit/list.jsp" />
       </list>
     </option>
   </component>
@@ -294,6 +258,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -481,7 +446,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -489,7 +453,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="E:/pdj_new/iqms-web/pom.xml" />
+    <property name="last_opened_file_path" value="E:/White-Jotter/wj/pom.xml" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -859,11 +823,16 @@
       <workItem from="1570843028788" duration="69000" />
       <workItem from="1571021572322" duration="1919000" />
       <workItem from="1571023717026" duration="94000" />
+      <workItem from="1571035026093" duration="683000" />
+      <workItem from="1571122902926" duration="1198000" />
+      <workItem from="1571204870713" duration="130000" />
+      <workItem from="1571206015458" duration="427000" />
+      <workItem from="1571215050824" duration="60000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="663650000" />
+    <option name="totallyTimeSpent" value="666148000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -877,7 +846,7 @@
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4730077" visible="true" weight="0.25067025" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4730077" visible="true" weight="0.26742628" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="JRebel" order="3" sideWeight="0.52699226" side_tool="true" weight="0.22319035" />
@@ -889,7 +858,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32978722" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49396783" weight="0.4490085" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49262735" weight="0.25070822" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49262735" weight="0.27053824" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3281471" />
@@ -1046,20 +1015,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../framework-security/src/main/java/com/aoto/framework/security/Ecmybatis/Model.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../framework-security/src/main/java/com/aoto/framework/security/Ecmybatis/PageData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="12" column="19" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../framework-security/src/main/java/com/aoto/framework/security/Ecmybatis/ResultMappings.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -1151,20 +1106,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/roomaudit/list.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2280">
-          <caret line="120" column="107" selection-start-line="120" selection-start-column="107" selection-end-line="120" selection-end-column="107" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/roominfo/show.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1049">
@@ -1192,20 +1133,6 @@
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/roominfo/list.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="20" column="26" lean-forward="true" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1326,13 +1253,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../framework-security/src/main/java/com/aoto/framework/security/service/impl/UserServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5282">
-          <caret line="327" column="41" selection-start-line="327" selection-start-column="41" selection-end-line="327" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../framework-logging/src/main/resources/com/aoto/framework/logging/persistence/inf/LogMapper4Mysql.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="798">
@@ -1400,40 +1320,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../framework-security/src/main/java/com/aoto/framework/security/service/impl/RoomInfoServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18658">
-          <caret line="1025" column="60" selection-start-line="1025" selection-start-column="60" selection-end-line="1025" selection-end-column="60" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../framework-security/src/main/resources/com/aoto/framework/security/persistence/inf/RoomInfoMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6308">
-          <caret line="332" column="9" selection-start-line="332" selection-start-column="9" selection-end-line="332" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/roominfo/new.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9785">
-          <caret line="515" column="42" selection-start-line="515" selection-start-column="42" selection-end-line="515" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../framework-security/src/main/java/com/aoto/framework/security/web/controllers/RoomInfoController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6118">
-          <caret line="383" selection-start-line="383" selection-end-line="383" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/conf/proxool.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
@@ -1452,10 +1338,86 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../framework-security/src/main/java/com/aoto/framework/security/service/impl/UserServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="143" column="46" selection-start-line="143" selection-start-column="46" selection-end-line="143" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://E:/apache-maven-3.5.0/repo-hxz/repository/org/springframework/security/spring-security-core/3.2.4.RELEASE/spring-security-core-3.2.4.RELEASE-sources.jar!/org/springframework/security/authentication/encoding/MessageDigestPasswordEncoder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="78" lean-forward="true" selection-start-line="78" selection-end-line="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../framework-security/src/main/java/com/aoto/framework/security/service/impl/RoomInfoServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="1025" column="60" selection-start-line="1025" selection-start-column="60" selection-end-line="1025" selection-end-column="60" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../framework-security/src/main/java/com/aoto/framework/security/web/controllers/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="249" column="43" selection-start-line="249" selection-start-column="43" selection-end-line="249" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../framework-security/src/main/java/com/aoto/framework/security/web/controllers/RoomInfoController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="119" column="113" selection-start-line="119" selection-start-column="78" selection-end-line="119" selection-end-column="113" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/roominfo/edit.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
+        <state relative-caret-position="9652">
           <caret line="508" selection-start-line="508" selection-end-line="508" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../framework-security/src/main/resources/com/aoto/framework/security/persistence/inf/RoomInfoMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6308">
+          <caret line="332" column="9" selection-start-line="332" selection-start-column="9" selection-end-line="332" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/roominfo/new.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9785">
+          <caret line="515" column="42" selection-start-line="515" selection-start-column="42" selection-end-line="515" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/roominfo/list.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4313">
+          <caret line="227" column="49" selection-start-line="227" selection-start-column="24" selection-end-line="227" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/roomaudit/list.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="127" column="49" selection-start-line="127" selection-start-column="49" selection-end-line="127" selection-end-column="49" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
