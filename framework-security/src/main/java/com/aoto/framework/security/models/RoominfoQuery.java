@@ -21,6 +21,8 @@ public class RoominfoQuery extends PaginationQuery {
 
     private String roomType;
 
+    private  String community;
+
     public String getRoomStatus() {
         return roomStatus;
     }
@@ -53,5 +55,13 @@ public class RoominfoQuery extends PaginationQuery {
 
     public void setRoomType(String roomType) {
         this.roomType = roomType;
+    }
+
+    public String getCommunity() {
+        return community;
+    }
+
+    public void setCommunity(String community) {
+        this.community = community;
     }
 }

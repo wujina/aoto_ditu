@@ -60,6 +60,8 @@ public interface RoomInfoService {
 
     List<String>administrativeAreaAll(HttpServletRequest request);
 
+    List<String>communityAll(HttpServletRequest request);
+
     String newRoomInfo(RoomInfoNewModel model, HttpServletRequest request, HttpSession session) throws IOException, SftpException;
 
     String editAudit(RoomInfoModel model);
@@ -69,5 +71,7 @@ public interface RoomInfoService {
     List<Map<String, Object>> getRoomInfoPage(TotalDTO dto, int userID);
 
    String selectRoomID(int roomid);
+
+
 
 }

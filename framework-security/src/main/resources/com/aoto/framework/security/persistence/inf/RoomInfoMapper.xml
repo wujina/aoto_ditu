@@ -254,6 +254,9 @@
         <if test="administrativeArea != null and adadministrativeAreaAllministrativeArea != ''">
             AND r.AdministrativeArea = #{administrativeArea,jdbcType=VARCHAR}
         </if>
+        <if test="community != null and community != ''">
+            AND r.Community = #{community,jdbcType=VARCHAR}
+        </if>
         <if test="roomName != null and roomName != '' ">
             AND r.RoomName like  #{roomName,jdbcType=VARCHAR}"%"
         </if>
@@ -268,6 +271,10 @@
 
     <select id="administrativeAreaAll" resultType="String">
         select  distinct AdministrativeArea from roominfo where UserID=#{userID,jdbcType=NUMERIC}
+    </select>
+
+    <select id="communityAll" resultType="String">
+        select  distinct Community from roominfo where UserID=#{userID,jdbcType=NUMERIC}
     </select>
 
     <select id="selectRoomID" resultMap="roomInfoMapper" parameterType="Int">

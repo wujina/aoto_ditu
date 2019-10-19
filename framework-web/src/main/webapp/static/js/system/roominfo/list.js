@@ -81,6 +81,7 @@ function loadDic()
     param.roomType=$('#roomType').combobox('getValue');
 	param.roomName =$('#roomName').val();
 	param.administrativeArea =$('#administrativeArea').val();
+	param.community=$('#community').val();
     $dgDic.datagrid("load", param);
 }
 
@@ -169,6 +170,7 @@ function newRoominfo()
 								$dlgNewRoominfo.dialog("close");
 								loadDic();
 								initadministrativeArea();
+								initCommunity();
 							}).fail(function(res) {
 								$(".datagrid-mask").hide();
 								$(".datagrid-mask-msg").hide();
@@ -282,6 +284,7 @@ function importExcel()
 								$.messager.alert($.i18n.prop("messager.info"), "上传成功", "info");
 								$dlgImportOrg.dialog("close");
 								initadministrativeArea();
+								initCommunity();
 								loadDic();
 							}).fail(function(data, status, e) {
                                 $(".datagrid-mask").hide();
@@ -426,6 +429,7 @@ function editDic()
 						$dlgEditDic.dialog("close");
 						loadDic();
 						initadministrativeArea();
+						initCommunity();
 					}).fail(function(res) {
 
 						$(".datagrid-mask").hide();
@@ -505,6 +509,7 @@ function removeDic()
                         $("#dgDic").datagrid("reload");
                         $("#dgDic").datagrid("clearSelections");
 						initadministrativeArea();
+						initCommunity();
                     }
                     else
                     {

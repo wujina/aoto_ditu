@@ -47,6 +47,8 @@ public interface RoomInfoMapper {
      */
     List<String>administrativeAreaAll(int userId);
 
+    List<String>communityAll(int userId);
+
     /**
      *
      * @param roomid

@@ -118,20 +118,6 @@ public class RoomInfoController {
     @RequestMapping(value = "/system/roominfo/list", method = RequestMethod.GET, produces = {"application/json"})
     @ResponseBody
     public JsonResult getUrls(RoominfoQuery model,HttpServletRequest request) throws UnsupportedEncodingException {
-        if( ServerUtil.isTomcat()){//tomcat server
-            if(model.getAdministrativeArea()!=null&&model.getAdministrativeArea()!=""){
-                model.setAdministrativeArea(new String(model.getAdministrativeArea().trim().getBytes("ISO-8859-1"), "UTF-8"));
-            }
-            if(model.getRoomName()!=null&&model.getRoomName()!=""){
-                model.setRoomName(new String(model.getRoomName().trim().getBytes("ISO-8859-1"), "UTF-8"));
-            }
-            if(model.getRoomType()!=null&&model.getRoomType()!=""){
-                model.setRoomType(new String(model.getRoomType().trim().getBytes("ISO-8859-1"), "UTF-8"));
-            }
-            if(model.getRoomStatus()!=null&&model.getRoomStatus()!=""){
-                model.setRoomStatus(new String(model.getRoomStatus().trim().getBytes("ISO-8859-1"), "UTF-8"));
-            }
-        }
         PagingCriteria pagingCriteria = new PagingCriteria(model.getPage() - 1, model.getRows(), model.getSort(),
                 model.getOrder());
         List<Map<String, Object>> list = roomInfoService.getUrlByPage(pagingCriteria, model,request);
@@ -296,6 +282,20 @@ public class RoomInfoController {
     ) {
 
         return roomInfoService.administrativeAreaAll(request);
+    }
+
+    /**
+     * 获取所有小区
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/system/roominfo/community", method = RequestMethod.POST)
+    @ResponseBody
+    public List<String>  getCommunity(
+            HttpServletRequest request
+    ) {
+
+        return roomInfoService.communityAll(request);
     }
 
     @RequestMapping(value = "/system/roominfo/roomInfoTotal", method = RequestMethod.GET)

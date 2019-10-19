@@ -31,6 +31,16 @@
                 </select>
             </div>
         </div>
+
+        <div class="form-group">
+            <label for="roomType">小区：</label>
+            <div class="form-group" test="${currentUser.function['190709']}">
+                <select id="community" style="width: 200px;">
+                    <option value="请选择">请选择</option>
+                </select>
+            </div>
+        </div>
+
         <div class="form-group">
             <label for="roomType">房源类型：</label>
                 <select id="roomType" style="width: 100px;" class="easyui-combobox myeasyui-searchParams"
@@ -146,7 +156,41 @@
         var condition = $(this).val();
         //其他操作
     });
+
+    $(document).on("change","#community",function(){
+        //获取选择的值
+        var condition = $(this).val();
+        //其他操作
+    });
+
+    function initCommunity() {
+        console.log("123");
+        var url=contextPath + "/system/roominfo/community";
+        $.ajax({
+            url: url,
+            type : "POST",
+            dataType : "json",
+            contentType : "application/json",
+            success : function(datas)
+            {
+                var optionstring = "";
+                $("#community").empty();
+                var temp="<option >请选择</option>";
+                $("#community").append(temp);
+                for (var i=0;i<datas.length;i++){
+                    optionstring = "<option value=\"" + datas[i] + "\" >" +datas[i]+" " + "</option>";
+
+                    $("#community").append(optionstring);
+                }
+            },
+            error: function (msg) {
+                console.log('数据出错了!!');
+            }
+        });
+    }
+
     function initadministrativeArea () {
+        console.log("123");
         var url=contextPath + "/system/roominfo/istrative";
         $.ajax({
             url: url,
@@ -172,28 +216,8 @@
     }
 
     $(function() {
-        var url=contextPath + "/system/roominfo/istrative";
-        $.ajax({
-            url: url,
-            type : "POST",
-            dataType : "json",
-            contentType : "application/json",
-            success : function(datas)
-            {
-                var optionstring = "";
-                $("#administrativeArea").empty();
-                var temp="<option >请选择</option>";
-                $("#administrativeArea").append(temp);
-                for (var i=0;i<datas.length;i++){
-                    optionstring = "<option value=\"" + datas[i] + "\" >" +datas[i]+" " + "</option>";
-
-                    $("#administrativeArea").append(optionstring);
-                }
-            },
-            error: function (msg) {
-                console.log('数据出错了!!');
-            }
-        });
+        initadministrativeArea();
+        initCommunity();
     })
 
     var img_jpg="jpg".toLocaleLowerCase();

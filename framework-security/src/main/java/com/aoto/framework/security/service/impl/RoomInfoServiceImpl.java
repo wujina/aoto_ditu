@@ -465,6 +465,11 @@ public class RoomInfoServiceImpl implements RoomInfoService {
                 model.setAdministrativeArea(null);
             }
         }
+        if(model.getCommunity()!=null){
+            if(model.getCommunity().equals("请选择")){
+                model.setCommunity(null);
+            }
+        }
         if(model.getRoomType()!=null){
             if(model.getRoomType().equals("请选择")){
                 model.setRoomType(null);
@@ -479,6 +484,7 @@ public class RoomInfoServiceImpl implements RoomInfoService {
         map.put("administrativeArea", StringUtils.trim(model.getAdministrativeArea()));
         map.put("roomName", StringUtils.trim(model.getRoomName()));
         map.put("roomType",StringUtils.trim(model.getRoomType()));
+        map.put("community",StringUtils.trim(model.getCommunity()));
         map.put("roomStatus",StringUtils.trim(model.getRoomStatus()));
         map.put("userID",request.getSession().getAttribute("userID"));
         List<Map<String,Object>>list=roomInfoMapper.selectUrlByPage(map);
@@ -797,6 +803,12 @@ public class RoomInfoServiceImpl implements RoomInfoService {
 
         int userID=(int)request.getSession().getAttribute("userID");
         return roomInfoMapper.administrativeAreaAll(userID);
+    }
+
+    @Override
+    public List<String> communityAll(HttpServletRequest request) {
+        int userID=(int)request.getSession().getAttribute("userID");
+        return roomInfoMapper.communityAll(userID);
     }
 
     @Override
