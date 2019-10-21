@@ -109,7 +109,6 @@
             <th data-options="hidden:'hidde',field:'roomCheck'"></th>
             <th data-options="hidden:'hidde',field:'roomCause'"></th>
             <th data-options="hidden:'hidde',field:'houseID'"></th>
-
         </tr>
         </thead>
     </table>

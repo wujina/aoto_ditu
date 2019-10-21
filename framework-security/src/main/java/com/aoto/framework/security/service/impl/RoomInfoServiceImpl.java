@@ -642,6 +642,7 @@ public class RoomInfoServiceImpl implements RoomInfoService {
             map.put(RoomInfo.PARK_SPACE,model.getParkSpace());
             map.put(RoomInfo.BUILD_YEAR,model.getBuildYear());
             map.put(RoomInfo.DECORATION,model.getDecoration());
+            map.put(RoomInfo.PUBLIC_DATE,roominfo.get("publicDate"));
             map.put(RoomInfo.UPDATE_DATE,now);
             map.put(RoomInfo.HOUSE_ID,model.getHouseID());
             map.put(RoomInfo.COMMUNITY_LONGITUDE,model.getCommunityLongitude());
