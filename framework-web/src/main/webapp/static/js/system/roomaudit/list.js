@@ -121,7 +121,7 @@ function editDic()
 	        closed:true,
             modal:true,
             cache:true,
-            title: $.i18n.prop("roominfo.edit"),
+            title: "房源审核",
             width: 960,
             height: 480,
             href: contextPath + "/system/roomaudit/edit",
