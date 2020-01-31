@@ -35,7 +35,7 @@
     <java.version>1.8</java.version>
     <junit.version>4.12</junit.version>
     <spring.version>4.3.7.RELEASE</spring.version>
-    <spring.security.version>3.2.4.RELEASE</spring.security.version>
+    <spring.security.version>5.2.0.RELEASE</spring.security.version>
     <cxf.version>3.0.7</cxf.version>
     <jackson.version>2.6.4</jackson.version>    
     <proxool.version>0.9.1</proxool.version>
